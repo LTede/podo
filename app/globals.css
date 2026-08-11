@@ -53,6 +53,18 @@ body {
   }
 }
 
+@keyframes fade-in-slow {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fade-in-slow {
+  animation: fade-in-slow 1.8s ease forwards;
+}
+
 /* 얇은 라인 장식 */
 .hairline {
   height: 1px;
