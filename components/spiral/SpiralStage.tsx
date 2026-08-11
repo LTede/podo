@@ -230,10 +230,26 @@ export default function SpiralStage({ children }: { children: ReactNode }) {
           ))}
         </nav>
 
-        {/* 진행 힌트 */}
-        <p className="absolute bottom-5 left-1/2 -translate-x-1/2 text-[10px] tracking-[0.35em] text-mist/30">
-          SCROLL — {String(active + 1).padStart(2, "0")} / {String(n).padStart(2, "0")}
-        </p>
+        {/* 진행 힌트 + 여정 건너뛰기 (빠른 길) — 모바일은 하단 상담 바 위로 올림 */}
+        <div className="absolute bottom-24 left-1/2 flex -translate-x-1/2 items-center gap-5 md:bottom-5">
+          <p className="text-[10px] tracking-[0.35em] text-mist/30">
+            SCROLL — {String(active + 1).padStart(2, "0")} /{" "}
+            {String(n).padStart(2, "0")}
+          </p>
+          <button
+            onClick={() =>
+              window.scrollTo({
+                top:
+                  (wrap.current?.offsetTop ?? 0) +
+                  (wrap.current?.offsetHeight ?? 0),
+                behavior: "smooth",
+              })
+            }
+            className="rounded-full border border-mist/15 px-4 py-1.5 text-[10px] tracking-[0.15em] text-mist/45 transition-colors hover:border-rose/50 hover:text-rose"
+          >
+            여정 건너뛰기 · 상담 바로가기 ↓
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import Tilt from "@/components/Tilt";
 import Ornament from "@/components/Ornament";
 import { clinic } from "@/lib/clinic";
+import { symptoms } from "@/lib/trust";
 
 /** 공중에 떠 있는 아이덴티티 글래스 카드 */
 const FLOAT_CARDS = [
@@ -179,6 +180,32 @@ export default function LandingHero() {
           >
             {clinic.phone}
           </a>
+        </div>
+
+        {/* 빠른 길 — 검색으로 찾아온 분들을 위한 증상 바로가기 (나선을 건너뛰는 1차 동선) */}
+        <div data-hero-fade className="mt-10 max-w-2xl md:mt-12">
+          <p className="text-[10px] font-semibold tracking-[0.3em] text-mist/35">
+            찾는 진료가 있으신가요? — 바로 이동
+          </p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {symptoms.map((s, i) => (
+              <a
+                key={s.href + s.text}
+                href={s.href}
+                className={`rounded-full border border-mist/12 bg-white/[0.03] px-3.5 py-1.5 text-[12px] text-mist/55 transition-all hover:border-rose/50 hover:text-rose ${
+                  i >= 4 ? "hidden md:inline-block" : ""
+                }`}
+              >
+                {s.text}
+              </a>
+            ))}
+            <a
+              href="/services"
+              className="rounded-full border border-gold/30 bg-gold/5 px-3.5 py-1.5 text-[12px] font-medium text-gold transition-colors hover:border-gold/60"
+            >
+              진료 전체 보기 →
+            </a>
+          </div>
         </div>
       </div>
 
