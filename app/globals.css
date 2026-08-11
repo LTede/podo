@@ -53,6 +53,15 @@ body {
   }
 }
 
+@keyframes scroll-hint {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
 @keyframes fade-in-slow {
   from {
     opacity: 0;

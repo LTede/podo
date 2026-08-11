@@ -14,7 +14,7 @@ export default function Doctor() {
   return (
     <section
       id="doctor"
-      className="relative overflow-hidden bg-wine-deep py-28 text-ivory md:py-40"
+      className="relative overflow-hidden bg-wine-deep/85 py-28 text-ivory md:py-40"
     >
       {/* 배경 장식 */}
       <div

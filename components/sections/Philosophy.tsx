@@ -72,7 +72,7 @@ export default function Philosophy() {
     <section
       id="philosophy"
       ref={ref}
-      className="relative overflow-hidden bg-ivory-deep py-28 md:py-40"
+      className="relative overflow-hidden py-28 md:py-40"
     >
       {/* 워터마크 */}
       <p

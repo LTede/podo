@@ -1,14 +1,9 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { clinic } from "@/lib/clinic";
-
-const ParticleField = dynamic(() => import("@/components/hero/ParticleField"), {
-  ssr: false,
-});
 
 const BADGES = [
   "연세대 의대 · 의학박사",
@@ -19,14 +14,6 @@ const BADGES = [
 
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
-  const [showCanvas, setShowCanvas] = useState(false);
-
-  // WebGL 캔버스는 첫 페인트 이후 마운트 (모션 최소화 설정 시 생략)
-  useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const id = requestAnimationFrame(() => setShowCanvas(true));
-    return () => cancelAnimationFrame(id);
-  }, []);
 
   useGSAP(
     () => {
@@ -55,21 +42,17 @@ export default function Hero() {
       ref={ref}
       className="relative flex min-h-svh flex-col overflow-hidden"
     >
-      {/* 배경 그라데이션 오브 */}
-      <div aria-hidden className="absolute inset-0">
-        <div className="absolute -left-32 top-1/4 h-[34rem] w-[34rem] rounded-full bg-blush blur-[110px]" />
-        <div className="absolute -right-24 top-8 h-[26rem] w-[26rem] rounded-full bg-grape-soft/25 blur-[110px]" />
-        <div className="absolute bottom-0 left-1/3 h-[22rem] w-[30rem] rounded-full bg-gold-soft/25 blur-[110px]" />
-      </div>
+      {/* 카피 뒤 은은한 글로우 — 파티클 위 가독성 확보 */}
+      <div
+        aria-hidden
+        className="absolute left-0 top-1/2 h-[80%] w-full max-w-3xl -translate-y-1/2 md:w-[60%]"
+        style={{
+          background:
+            "radial-gradient(ellipse closest-side, rgba(250,247,242,0.85), rgba(250,247,242,0.45) 55%, transparent 100%)",
+        }}
+      />
 
-      {/* 파티클 캔버스 */}
-      {showCanvas && (
-        <div aria-hidden className="fade-in-slow absolute inset-0 opacity-0">
-          <ParticleField />
-        </div>
-      )}
-
-      {/* 카피 */}
+      {/* 카피 — 배경은 글로벌 3D 저니 씬이 담당 */}
       <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-5 pt-24 md:px-8">
         <p
           data-hero-fade
@@ -114,6 +97,16 @@ export default function Hero() {
           >
             진료 안내 보기
           </a>
+        </div>
+
+        {/* 스크롤 유도 */}
+        <div data-hero-fade className="mt-16 flex items-center gap-3 md:mt-20">
+          <span className="relative h-10 w-[1px] overflow-hidden bg-charcoal/15">
+            <span className="absolute inset-x-0 top-0 h-1/2 animate-[scroll-hint_1.8s_ease-in-out_infinite] bg-wine" />
+          </span>
+          <span className="text-[11px] tracking-[0.25em] text-charcoal/45">
+            SCROLL — 공간이 움직입니다
+          </span>
         </div>
       </div>
 
