@@ -12,6 +12,8 @@ import {
   ChapterAbout,
   ChapterVisit,
 } from "@/components/spiral/chapters";
+import MainTail from "@/components/MainTail";
+import ConsultBar from "@/components/ConsultBar";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -20,7 +22,7 @@ export default function Home() {
       <Nebula vine />
       <IntroOverlay />
       <Header />
-      <main>
+      <main className="pb-20 md:pb-0">
         <SpiralStage>
           <ChapterHero />
           <ChapterPhilosophy />
@@ -31,7 +33,9 @@ export default function Home() {
           <ChapterAbout />
           <ChapterVisit />
         </SpiralStage>
+        <MainTail />
       </main>
+      <ConsultBar />
       <Footer />
     </>
   );

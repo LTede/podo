@@ -3,6 +3,7 @@ import Link from "next/link";
 import SubpageShell from "@/components/SubpageShell";
 import Reveal from "@/components/Reveal";
 import { greeting, facilities, academics, honors, press } from "@/lib/about";
+import { milestones } from "@/lib/trust";
 
 export const metadata: Metadata = {
   title: "포도 소개 | 포도여성의원",
@@ -38,6 +39,40 @@ export default function AboutPage() {
             <p className="reveal font-display mt-8 text-lg font-semibold text-gold-soft">
               {greeting.sign}
             </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* 연혁 타임라인 */}
+      <section className="relative py-16 md:py-20">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <Reveal>
+            <p className="reveal text-[11px] font-semibold tracking-[0.3em] text-gold md:text-xs">
+              MILESTONES
+            </p>
+            <h2 className="reveal font-display mt-4 text-2xl font-medium text-mist md:text-4xl">
+              2003년부터, 기준이 되어온 시간
+            </h2>
+          </Reveal>
+          <Reveal className="mt-10" stagger={0.07}>
+            <ol className="relative ml-2 border-l border-rose/25">
+              {milestones.map((m) => (
+                <li key={m.text} className="reveal relative mb-8 pl-8 last:mb-0">
+                  <span
+                    aria-hidden
+                    className="absolute -left-[5px] top-1.5 block h-2.5 w-2.5 rounded-full bg-gradient-to-br from-rose to-wine shadow-[0_0_10px_rgba(217,139,166,0.8)]"
+                  />
+                  {m.year && (
+                    <p className="font-display text-sm font-semibold text-gold">
+                      {m.year}
+                    </p>
+                  )}
+                  <p className="mt-0.5 text-[15px] leading-relaxed text-mist/70">
+                    {m.text}
+                  </p>
+                </li>
+              ))}
+            </ol>
           </Reveal>
         </div>
       </section>

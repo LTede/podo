@@ -6,6 +6,8 @@ import Reveal from "@/components/Reveal";
 import Tilt from "@/components/Tilt";
 import { categories, getCategory } from "@/lib/content";
 import { clinic } from "@/lib/clinic";
+import { categoryFaq } from "@/lib/faq";
+import FaqList from "@/components/Faq";
 
 export function generateStaticParams() {
   return categories.map((c) => ({ category: c.key }));
@@ -17,7 +19,14 @@ export async function generateMetadata({
   params: Promise<{ category: string }>;
 }): Promise<Metadata> {
   const cat = getCategory((await params).category);
-  return { title: cat ? `${cat.label} | 포도여성의원` : "포도여성의원" };
+  if (!cat) return { title: "포도여성의원" };
+  const title = `강남 ${cat.label} | ${cat.tagline} — 포도여성의원`;
+  const description = cat.intro.slice(0, 150);
+  return {
+    title,
+    description,
+    openGraph: { title, description, type: "website" },
+  };
 }
 
 export default async function CategoryPage({
@@ -96,6 +105,21 @@ export default async function CategoryPage({
               </Tilt>
             ))}
           </Reveal>
+
+          {/* 자주 묻는 질문 */}
+          {categoryFaq[cat.key] && (
+            <Reveal className="mt-16 border-t border-mist/10 pt-12">
+              <p className="reveal text-[11px] font-semibold tracking-[0.3em] text-gold">
+                FAQ
+              </p>
+              <h2 className="reveal font-display mt-3 text-2xl font-medium text-mist md:text-3xl">
+                자주 묻는 질문
+              </h2>
+              <div className="reveal mt-7 max-w-3xl">
+                <FaqList items={categoryFaq[cat.key]} />
+              </div>
+            </Reveal>
+          )}
 
           {/* 다른 진료 보기 */}
           <Reveal className="mt-16 border-t border-mist/10 pt-10">
