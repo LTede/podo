@@ -66,7 +66,7 @@ export default function ConsultBar() {
           )}
           <a
             href="/visit#consult"
-            className="flex flex-col items-center gap-0.5 bg-gradient-to-r from-wine to-grape py-3 text-mist"
+            className="flex flex-col items-center gap-0.5 bg-gradient-to-r from-wine to-grape py-3 text-cream"
           >
             <span className="text-base" aria-hidden>🗓</span>
             <span className="text-[11px] font-semibold">비공개 상담</span>
@@ -77,7 +77,7 @@ export default function ConsultBar() {
       {/* 데스크톱 — 우하단 플로팅 */}
       <a
         href="/visit#consult"
-        className={`fixed bottom-7 right-7 z-40 hidden items-center gap-3 rounded-full bg-gradient-to-r from-wine to-grape py-3.5 pl-5 pr-6 text-sm font-semibold text-mist shadow-[0_0_36px_rgba(141,68,103,0.6)] transition-all duration-700 hover:-translate-y-1 hover:shadow-[0_0_48px_rgba(217,139,166,0.55)] md:flex ${
+        className={`fixed bottom-7 right-7 z-40 hidden items-center gap-3 rounded-full bg-gradient-to-r from-wine to-grape py-3.5 pl-5 pr-6 text-sm font-semibold text-cream shadow-[0_0_36px_rgba(92,36,64,0.3)] transition-all duration-700 hover:-translate-y-1 hover:shadow-[0_0_48px_rgba(168,78,110,0.3)] md:flex ${
           visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"
         }`}
       >

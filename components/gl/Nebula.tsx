@@ -48,11 +48,11 @@ function Dust({ count }: { count: number }) {
   );
   const { positions, colors } = useMemo(() => {
     const palette = [
-      new THREE.Color("#d98ba6"),
-      new THREE.Color("#b57795"),
-      new THREE.Color("#d4a763"),
-      new THREE.Color("#8d4467"),
-      new THREE.Color("#e6c896"),
+      new THREE.Color("#b2607f"),
+      new THREE.Color("#95627b"),
+      new THREE.Color("#a8823f"),
+      new THREE.Color("#7d3f60"),
+      new THREE.Color("#b98d4a"),
     ];
     const positions = new Float32Array(count * 3);
     const colors = new Float32Array(count * 3);
@@ -95,11 +95,10 @@ function Dust({ count }: { count: number }) {
         map={sprite}
         vertexColors
         transparent
-        opacity={0.75}
+        opacity={0.55}
         size={0.055}
         sizeAttenuation
         depthWrite={false}
-        blending={THREE.AdditiveBlending}
       />
     </points>
   );
@@ -109,15 +108,15 @@ function Dust({ count }: { count: number }) {
 function GlowOrbs() {
   const group = useRef<THREE.Group>(null);
   const texWine = useMemo(
-    () => makeGlowTexture("rgba(141,68,103,0.55)", "rgba(109,39,67,0.22)"),
+    () => makeGlowTexture("rgba(92,36,64,0.28)", "rgba(109,39,67,0.22)"),
     []
   );
   const texGold = useMemo(
-    () => makeGlowTexture("rgba(212,167,99,0.4)", "rgba(212,167,99,0.12)"),
+    () => makeGlowTexture("rgba(168,130,63,0.3)", "rgba(168,130,63,0.1)"),
     []
   );
   const texRose = useMemo(
-    () => makeGlowTexture("rgba(217,139,166,0.45)", "rgba(178,95,128,0.16)"),
+    () => makeGlowTexture("rgba(178,95,128,0.3)", "rgba(178,95,128,0.12)"),
     []
   );
 
@@ -144,7 +143,6 @@ function GlowOrbs() {
         map={tex}
         transparent
         depthWrite={false}
-        blending={THREE.AdditiveBlending}
       />
     </sprite>
   );
@@ -195,10 +193,10 @@ function Vine({ chapters = 7 }: { chapters?: number }) {
     const glow = new THREE.TubeGeometry(curve, 220, 0.06, 8, false);
 
     const palette = [
-      new THREE.Color("#d98ba6"),
-      new THREE.Color("#8d4467"),
-      new THREE.Color("#d4a763"),
-      new THREE.Color("#b57795"),
+      new THREE.Color("#b2607f"),
+      new THREE.Color("#7d3f60"),
+      new THREE.Color("#a8823f"),
+      new THREE.Color("#95627b"),
     ];
     const per = 16;
     const positions = new Float32Array(chapters * per * 3);
@@ -225,9 +223,9 @@ function Vine({ chapters = 7 }: { chapters?: number }) {
   /* 꼭대기 꽃관 — 3겹 후광 링 */
   const crownData = useMemo(() => {
     const rings = [
-      { r: 0.28, n: 10, color: new THREE.Color("#e6c896"), size: 1 },
-      { r: 0.55, n: 16, color: new THREE.Color("#d98ba6"), size: 0.8 },
-      { r: 0.85, n: 22, color: new THREE.Color("#b57795"), size: 0.6 },
+      { r: 0.28, n: 10, color: new THREE.Color("#b98d4a"), size: 1 },
+      { r: 0.55, n: 16, color: new THREE.Color("#b2607f"), size: 0.8 },
+      { r: 0.85, n: 22, color: new THREE.Color("#95627b"), size: 0.6 },
     ];
     const total = rings.reduce((s, r) => s + r.n, 0);
     const positions = new Float32Array(total * 3);
@@ -259,9 +257,9 @@ function Vine({ chapters = 7 }: { chapters?: number }) {
     const speeds = new Float32Array(PETALS);
     const baseX = new Float32Array(PETALS);
     const palette = [
-      new THREE.Color("#e8b7c8"),
-      new THREE.Color("#d98ba6"),
-      new THREE.Color("#e6c896"),
+      new THREE.Color("#cf8fa8"),
+      new THREE.Color("#b2607f"),
+      new THREE.Color("#b98d4a"),
     ];
     for (let i = 0; i < PETALS; i++) {
       baseX[i] = (Math.random() * 2 - 1) * 1.7;
@@ -334,15 +332,14 @@ function Vine({ chapters = 7 }: { chapters?: number }) {
     <group ref={group}>
       {/* 덩굴 본체 */}
       <mesh geometry={tube}>
-        <meshBasicMaterial color="#8d4467" transparent opacity={0.9} />
+        <meshBasicMaterial color="#7d3f60" transparent opacity={0.9} />
       </mesh>
       <mesh geometry={glow}>
         <meshBasicMaterial
-          color="#d98ba6"
+          color="#b2607f"
           transparent
           opacity={0.14}
-          blending={THREE.AdditiveBlending}
-          depthWrite={false}
+            depthWrite={false}
         />
       </mesh>
 
@@ -360,8 +357,7 @@ function Vine({ chapters = 7 }: { chapters?: number }) {
           size={0.11}
           sizeAttenuation
           depthWrite={false}
-          blending={THREE.AdditiveBlending}
-        />
+          />
       </points>
 
       {/* 꼭대기 꽃관 — 피어나는 후광 */}
@@ -369,22 +365,20 @@ function Vine({ chapters = 7 }: { chapters?: number }) {
         <sprite scale={[2.4, 2.4, 1]}>
           <spriteMaterial
             map={sprite}
-            color="#d98ba6"
+            color="#b2607f"
             transparent
             opacity={0.32}
             depthWrite={false}
-            blending={THREE.AdditiveBlending}
-          />
+              />
         </sprite>
         <sprite scale={[1.1, 1.1, 1]} position={[0, 0.05, 0]}>
           <spriteMaterial
             map={sprite}
-            color="#e6c896"
+            color="#b98d4a"
             transparent
             opacity={0.5}
             depthWrite={false}
-            blending={THREE.AdditiveBlending}
-          />
+              />
         </sprite>
         <points>
           <bufferGeometry>
@@ -405,8 +399,7 @@ function Vine({ chapters = 7 }: { chapters?: number }) {
             size={0.16}
             sizeAttenuation
             depthWrite={false}
-            blending={THREE.AdditiveBlending}
-          />
+              />
         </points>
       </group>
 
@@ -430,8 +423,7 @@ function Vine({ chapters = 7 }: { chapters?: number }) {
           size={0.13}
           sizeAttenuation
           depthWrite={false}
-          blending={THREE.AdditiveBlending}
-        />
+          />
       </points>
 
       {/* 바닥 — 빛웅덩이와 물결 */}
@@ -439,22 +431,20 @@ function Vine({ chapters = 7 }: { chapters?: number }) {
         <sprite scale={[3.2, 3.2, 1]}>
           <spriteMaterial
             map={sprite}
-            color="#d4a763"
+            color="#a8823f"
             transparent
             opacity={0.22}
             depthWrite={false}
-            blending={THREE.AdditiveBlending}
-          />
+              />
         </sprite>
         <sprite scale={[1.6, 1.6, 1]}>
           <spriteMaterial
             map={sprite}
-            color="#d98ba6"
+            color="#b2607f"
             transparent
             opacity={0.3}
             depthWrite={false}
-            blending={THREE.AdditiveBlending}
-          />
+              />
         </sprite>
         {[0, 1, 2].map((i) => (
           <mesh
@@ -466,13 +456,12 @@ function Vine({ chapters = 7 }: { chapters?: number }) {
           >
             <ringGeometry args={[0.47, 0.5, 48]} />
             <meshBasicMaterial
-              color="#d98ba6"
+              color="#b2607f"
               transparent
               opacity={0.2}
               side={THREE.DoubleSide}
               depthWrite={false}
-              blending={THREE.AdditiveBlending}
-            />
+                  />
           </mesh>
         ))}
       </group>

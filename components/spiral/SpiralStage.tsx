@@ -223,7 +223,7 @@ export default function SpiralStage({ children }: { children: ReactNode }) {
               }
               className={`rounded-full transition-all duration-500 ${
                 active === i
-                  ? "h-7 w-1.5 bg-rose shadow-[0_0_10px_rgba(217,139,166,0.8)]"
+                  ? "h-7 w-1.5 bg-rose shadow-[0_0_10px_rgba(168,78,110,0.5)]"
                   : "h-1.5 w-1.5 bg-mist/25 hover:bg-mist/50"
               }`}
             />

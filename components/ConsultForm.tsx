@@ -139,7 +139,7 @@ export default function ConsultForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="mt-6 w-full rounded-full bg-gradient-to-r from-wine to-grape py-4 text-[15px] font-semibold text-mist shadow-[0_0_36px_rgba(141,68,103,0.55)] transition-all hover:-translate-y-0.5 disabled:opacity-60 md:w-auto md:px-12"
+        className="mt-6 w-full rounded-full bg-gradient-to-r from-wine to-grape py-4 text-[15px] font-semibold text-cream shadow-[0_0_36px_rgba(92,36,64,0.28)] transition-all hover:-translate-y-0.5 disabled:opacity-60 md:w-auto md:px-12"
       >
         {status === "sending" ? "전송 중…" : "비공개 상담 신청하기"}
       </button>

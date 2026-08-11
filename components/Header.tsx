@@ -38,7 +38,7 @@ export default function Header() {
       >
         {/* 로고 */}
         <a href="/" className="flex items-center gap-2.5">
-          <span className="block h-2.5 w-2.5 rounded-full bg-gradient-to-br from-rose to-wine shadow-[0_0_12px_rgba(217,139,166,0.8)]" />
+          <span className="block h-2.5 w-2.5 rounded-full bg-gradient-to-br from-rose to-wine shadow-[0_0_12px_rgba(168,78,110,0.5)]" />
           <span className="font-display text-lg font-semibold tracking-tight text-mist md:text-xl">
             포도여성의원
           </span>
@@ -55,7 +55,7 @@ export default function Header() {
               <a
                 key={item.href}
                 href={item.href}
-                className="rounded-full px-4 py-2 text-[13px] font-medium text-mist/65 transition-colors hover:bg-white/5 hover:text-mist"
+                className="rounded-full px-4 py-2 text-[13px] font-medium text-mist/65 transition-colors hover:bg-white/70 hover:text-mist"
               >
                 {item.label}
               </a>
@@ -63,7 +63,7 @@ export default function Header() {
             <span className="mx-1 h-4 w-px bg-mist/15" />
             <a
               href={clinic.phoneHref}
-              className="rounded-full px-4 py-2 text-[13px] font-semibold tracking-wide text-gold-soft transition-colors hover:bg-white/5"
+              className="rounded-full px-4 py-2 text-[13px] font-semibold tracking-wide text-gold-soft transition-colors hover:bg-white/70"
             >
               {clinic.phone}
             </a>
@@ -71,7 +71,7 @@ export default function Header() {
 
           <a
             href="/visit"
-            className="rounded-full bg-gradient-to-r from-wine to-grape px-5 py-2.5 text-[13px] font-semibold text-mist shadow-[0_0_24px_rgba(141,68,103,0.5)] transition-all hover:shadow-[0_0_32px_rgba(217,139,166,0.55)] md:px-6"
+            className="rounded-full bg-gradient-to-r from-wine to-grape px-5 py-2.5 text-[13px] font-semibold text-cream shadow-[0_0_24px_rgba(92,36,64,0.25)] transition-all hover:shadow-[0_0_32px_rgba(168,78,110,0.3)] md:px-6"
           >
             상담 예약
           </a>
@@ -129,7 +129,7 @@ export default function Header() {
         <div className="px-8 pb-12">
           <a
             href={clinic.phoneHref}
-            className="block rounded-full bg-gradient-to-r from-wine to-grape py-4 text-center text-base font-semibold text-mist"
+            className="block rounded-full bg-gradient-to-r from-wine to-grape py-4 text-center text-base font-semibold text-cream"
           >
             {clinic.phone} 전화 상담
           </a>

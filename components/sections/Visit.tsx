@@ -25,7 +25,7 @@ export default function Visit() {
             <div className="reveal mt-10 flex flex-wrap gap-4">
               <a
                 href={clinic.phoneHref}
-                className="rounded-full bg-gradient-to-r from-wine to-grape px-8 py-4 text-[15px] font-semibold text-mist shadow-[0_0_36px_rgba(141,68,103,0.55)] transition-all hover:-translate-y-0.5 hover:shadow-[0_0_48px_rgba(217,139,166,0.5)]"
+                className="rounded-full bg-gradient-to-r from-wine to-grape px-8 py-4 text-[15px] font-semibold text-cream shadow-[0_0_36px_rgba(92,36,64,0.28)] transition-all hover:-translate-y-0.5 hover:shadow-[0_0_48px_rgba(168,78,110,0.3)]"
               >
                 {clinic.phone}
               </a>
@@ -66,11 +66,11 @@ export default function Visit() {
                 ))}
               </ul>
             </div>
-            <div className="reveal mt-5 rounded-3xl bg-gradient-to-br from-wine via-noir-3 to-grape p-8 ring-1 ring-rose/20 md:p-10">
-              <h3 className="font-display text-xl font-semibold text-mist">
+            <div className="reveal mt-5 rounded-3xl bg-gradient-to-br from-wine via-wine-deep to-grape p-8 ring-1 ring-rose/20 md:p-10">
+              <h3 className="font-display text-xl font-semibold text-cream">
                 오시는 길
               </h3>
-              <p className="mt-4 text-[15px] leading-relaxed text-mist/70">
+              <p className="mt-4 text-[15px] leading-relaxed text-cream/75">
                 {clinic.address}
               </p>
               <p className="mt-2 text-[13px] text-gold-soft">

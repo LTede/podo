@@ -114,8 +114,8 @@ export default function LandingHero() {
               <span
                 className={`block rounded-full ${
                   i % 3 === 0
-                    ? "h-2.5 w-2.5 bg-gold-soft shadow-[0_0_14px_rgba(230,200,150,0.8)]"
-                    : "h-2 w-2 bg-grape-soft shadow-[0_0_12px_rgba(181,119,149,0.7)]"
+                    ? "h-2.5 w-2.5 bg-gold-soft shadow-[0_0_14px_rgba(168,130,63,0.55)]"
+                    : "h-2 w-2 bg-grape-soft shadow-[0_0_12px_rgba(125,63,96,0.45)]"
                 }`}
               />
             </span>
@@ -170,7 +170,7 @@ export default function LandingHero() {
         <div data-hero-fade className="mt-10 flex flex-wrap items-center gap-4">
           <a
             href="/visit#consult"
-            className="rounded-full bg-gradient-to-r from-wine to-grape px-8 py-4 text-[15px] font-semibold text-mist shadow-[0_0_36px_rgba(141,68,103,0.55)] transition-all hover:-translate-y-0.5 hover:shadow-[0_0_48px_rgba(217,139,166,0.5)]"
+            className="rounded-full bg-gradient-to-r from-wine to-grape px-8 py-4 text-[15px] font-semibold text-cream shadow-[0_0_36px_rgba(92,36,64,0.28)] transition-all hover:-translate-y-0.5 hover:shadow-[0_0_48px_rgba(168,78,110,0.3)]"
           >
             나를 위한 비공개 상담
           </a>
@@ -192,7 +192,7 @@ export default function LandingHero() {
               <a
                 key={s.href + s.text}
                 href={s.href}
-                className={`rounded-full border border-mist/12 bg-white/[0.03] px-3.5 py-1.5 text-[12px] text-mist/55 transition-all hover:border-rose/50 hover:text-rose ${
+                className={`rounded-full border border-mist/12 bg-white/55 px-3.5 py-1.5 text-[12px] text-mist/55 transition-all hover:border-rose/50 hover:text-rose ${
                   i >= 4 ? "hidden md:inline-block" : ""
                 }`}
               >

@@ -1,34 +1,38 @@
 @import "tailwindcss";
 
-/* ── PODO NOIR 디자인 토큰 ────────────────────────────────
-   거의 검정에 가까운 자두빛 배경 위에서 발광하는
-   와인 · 로즈 · 골드 — 다크 럭셔리 메디컬 */
+/* ── 시안 2 · PODO IVORY 디자인 토큰 ──────────────────────
+   아이보리·샴페인 바탕 위의 딥 와인 — 라이트 럭셔리 메디컬.
+   주의: 토큰명은 시안 1(노아르)과 동일하게 유지하되 값만 반전 —
+   noir 계열 = 밝은 바탕, mist = 진한 본문 텍스트, cream = 와인 카드 위 밝은 텍스트 */
 @theme {
-  /* 다크 바탕 */
-  --color-noir: #120a10;
-  --color-noir-2: #1c1018;
-  --color-noir-3: #26141f;
+  /* 바탕 (라이트) */
+  --color-noir: #faf6f0;
+  --color-noir-2: #f4ede3;
+  --color-noir-3: #ecdfd2;
 
-  /* 빛 */
-  --color-mist: #f4ebef; /* 본문 밝은 텍스트 */
-  --color-rose: #d98ba6; /* 발광 로즈 */
-  --color-rose-deep: #b25f80;
-  --color-gold: #d4a763;
-  --color-gold-soft: #e6c896;
+  /* 텍스트 */
+  --color-mist: #40232f; /* 본문 — 딥 플럼 */
+  --color-cream: #faf3ee; /* 와인/다크 카드 위 밝은 텍스트 */
 
-  /* 브랜드 와인 계열 (그라데이션용) */
-  --color-wine: #6d2743;
+  /* 포인트 */
+  --color-rose: #a84e6e;
+  --color-rose-deep: #8d3a58;
+  --color-gold: #a8823f;
+  --color-gold-soft: #c2a061;
+
+  /* 브랜드 와인 계열 */
+  --color-wine: #5c2440;
   --color-wine-deep: #3d1226;
-  --color-grape: #8d4467;
-  --color-grape-soft: #b57795;
+  --color-grape: #7d3f60;
+  --color-grape-soft: #a4728c;
 
-  /* 이전 라이트 팔레트 호환 (인트로 등에서 사용) */
+  /* 인트로 등 라이트 고정 표면 */
   --color-ivory: #f4ebef;
   --color-ivory-deep: #e9dbe1;
-  --color-blush: #f2e7e3;
-  --color-charcoal: #241521;
-  --color-stone: #9d8b93;
-  --color-line: rgba(217, 139, 166, 0.16);
+  --color-blush: #f2e2dc;
+  --color-charcoal: #40232f;
+  --color-stone: #8d7a82;
+  --color-line: rgba(92, 36, 64, 0.14);
 
   --font-display: "Noto Serif KR", "Apple SD Gothic Neo", serif;
   --font-body: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo",
@@ -49,8 +53,8 @@ body {
 }
 
 ::selection {
-  background: var(--color-rose);
-  color: var(--color-noir);
+  background: var(--color-wine);
+  color: var(--color-cream);
 }
 
 /* 스크롤 리빌 기본 상태 (GSAP가 제어) */
@@ -70,37 +74,28 @@ body {
 /* 외곽선 타이포 (거대 워터마크용) */
 .text-outline {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(217, 139, 166, 0.22);
+  -webkit-text-stroke: 1px rgba(92, 36, 64, 0.16);
 }
 
-/* 발광 텍스트 그라데이션 — 은은한 로즈 후광 포함 */
+/* 와인 그라데이션 강조 텍스트 — 라이트 바탕용 (발광 대신 깊이) */
 .text-glow-gradient {
   background: linear-gradient(
     100deg,
-    var(--color-rose) 0%,
-    var(--color-gold-soft) 55%,
-    var(--color-rose-deep) 100%
+    var(--color-rose-deep) 0%,
+    var(--color-gold) 55%,
+    var(--color-wine) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  filter: drop-shadow(0 0 18px rgba(217, 139, 166, 0.35));
+  filter: drop-shadow(0 1px 12px rgba(168, 78, 110, 0.18));
 }
 
-/* 글래스 패널 */
+/* 글래스 패널 — 라이트: 흰 유리 */
 .glass {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(244, 235, 239, 0.1);
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(92, 36, 64, 0.12);
   backdrop-filter: blur(14px);
-}
-
-@keyframes scroll-hint {
-  0% {
-    transform: translateY(-100%);
-  }
-  100% {
-    transform: translateY(200%);
-  }
 }
 
 /* 포도 문양 후광 회전 */
@@ -121,6 +116,15 @@ body {
   }
   50% {
     transform: translateY(-14px);
+  }
+}
+
+@keyframes scroll-hint {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
   }
 }
 

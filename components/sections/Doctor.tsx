@@ -43,21 +43,21 @@ export default function Doctor() {
           {/* 프로필 이미지 슬롯 — 실제 사진 수급 시 /public/images/doctor.jpg 로 교체 */}
           <Reveal>
             <Tilt className="reveal" max={6}>
-            <figure className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-gradient-to-br from-wine via-noir-3 to-grape/60 ring-1 ring-rose/20">
+            <figure className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-gradient-to-br from-wine via-wine-deep to-grape/60 ring-1 ring-rose/20">
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                <span className="font-display text-5xl font-semibold tracking-widest text-mist/15">
+                <span className="font-display text-5xl font-semibold tracking-widest text-cream/25">
                   PODO
                 </span>
-                <span className="text-[11px] tracking-[0.3em] text-mist/25">
+                <span className="text-[11px] tracking-[0.3em] text-cream/35">
                   DR. MO HYUNG-JIN
                 </span>
               </div>
-              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-noir to-transparent p-6">
-                <p className="font-display text-2xl font-semibold text-mist">
+              <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-wine-deep to-transparent p-6">
+                <p className="font-display text-2xl font-semibold text-cream">
                   {doctor.name}{" "}
                   <span className="text-base font-normal">원장</span>
                 </p>
-                <p className="mt-1 text-[13px] text-mist/50">{doctor.title}</p>
+                <p className="mt-1 text-[13px] text-cream/60">{doctor.title}</p>
               </figcaption>
             </figure>
             </Tilt>

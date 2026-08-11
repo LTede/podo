@@ -3,8 +3,8 @@ import { careSystem, privacyProgram } from "@/lib/content";
 
 /* 시설 사진 슬롯 — 실제 사진 수급 시 /public/images/facility-*.jpg 로 교체 */
 const FACILITY_SLOTS = [
-  { label: "VIP 입원실 6실", desc: "5성급 호텔룸 콘셉트", tone: "from-wine/70 via-noir-3 to-grape/50" },
-  { label: "프라이빗 상담실", desc: "1:1 비공개 상담", tone: "from-grape/60 via-noir-3 to-gold/30" },
+  { label: "VIP 입원실 6실", desc: "5성급 호텔룸 콘셉트", tone: "from-wine/70 via-wine-deep to-grape/50" },
+  { label: "프라이빗 상담실", desc: "1:1 비공개 상담", tone: "from-grape/60 via-wine-deep to-gold/30" },
   { label: "수술실 · 회복실", desc: "방역 · 멸균관리 프로그램", tone: "from-noir-3 via-wine/60 to-rose-deep/40" },
 ];
 
@@ -71,11 +71,11 @@ export default function Care() {
 
         {/* 프라이버시 보호 프로그램 */}
         <Reveal className="mt-16 md:mt-24">
-          <div className="reveal rounded-3xl bg-gradient-to-br from-wine via-noir-3 to-grape p-8 ring-1 ring-rose/20 md:p-12">
+          <div className="reveal rounded-3xl bg-gradient-to-br from-wine via-wine-deep to-grape p-8 ring-1 ring-rose/20 md:p-12">
             <p className="text-[11px] font-semibold tracking-[0.28em] text-gold-soft">
               PRIVACY PROTECTION PROGRAM
             </p>
-            <h3 className="font-display mt-3 text-2xl font-semibold text-mist md:text-3xl">
+            <h3 className="font-display mt-3 text-2xl font-semibold text-cream md:text-3xl">
               당신의 방문은 기록되지 않은 시간처럼
             </h3>
             <ul className="mt-7 grid gap-3 md:grid-cols-2">

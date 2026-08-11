@@ -67,7 +67,7 @@ export default function AboutPage() {
                 <li key={m.text} className="reveal relative mb-8 pl-8 last:mb-0">
                   <span
                     aria-hidden
-                    className="absolute -left-[5px] top-1.5 block h-2.5 w-2.5 rounded-full bg-gradient-to-br from-rose to-wine shadow-[0_0_10px_rgba(217,139,166,0.8)]"
+                    className="absolute -left-[5px] top-1.5 block h-2.5 w-2.5 rounded-full bg-gradient-to-br from-rose to-wine shadow-[0_0_10px_rgba(168,78,110,0.5)]"
                   />
                   {m.year && (
                     <p className="font-display text-sm font-semibold text-gold">
@@ -179,7 +179,7 @@ export default function AboutPage() {
               </Link>
               <Link
                 href="/visit"
-                className="rounded-full bg-gradient-to-r from-wine to-grape px-6 py-3 text-sm font-semibold text-mist shadow-[0_0_24px_rgba(141,68,103,0.5)]"
+                className="rounded-full bg-gradient-to-r from-wine to-grape px-6 py-3 text-sm font-semibold text-cream shadow-[0_0_24px_rgba(92,36,64,0.25)]"
               >
                 상담 예약
               </Link>

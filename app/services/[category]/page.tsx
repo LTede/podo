@@ -94,7 +94,7 @@ export default async function CategoryPage({
                       {t.points.map((p) => (
                         <li
                           key={p}
-                          className="rounded-full bg-white/5 px-3 py-1 text-xs text-mist/60"
+                          className="rounded-full bg-white/70 px-3 py-1 text-xs text-mist/60"
                         >
                           {p}
                         </li>
@@ -143,26 +143,26 @@ export default async function CategoryPage({
 
           {/* CTA */}
           <Reveal className="mt-14">
-            <div className="reveal rounded-3xl bg-gradient-to-br from-wine via-noir-3 to-grape p-8 ring-1 ring-rose/20 md:p-12">
+            <div className="reveal rounded-3xl bg-gradient-to-br from-wine via-wine-deep to-grape p-8 ring-1 ring-rose/20 md:p-12">
               <div className="flex flex-wrap items-center justify-between gap-6">
                 <div>
-                  <h2 className="font-display text-2xl font-semibold text-mist md:text-3xl">
+                  <h2 className="font-display text-2xl font-semibold text-cream md:text-3xl">
                     고민은 상담에서 답이 됩니다
                   </h2>
-                  <p className="mt-2 text-sm text-mist/60">
+                  <p className="mt-2 text-sm text-cream/70">
                     비공개 1:1 상담 · 원장이 직접 답합니다 · 평일 저녁 7시까지
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-3">
                   <a
                     href={clinic.phoneHref}
-                    className="rounded-full bg-mist px-7 py-3.5 text-sm font-bold text-wine-deep transition-transform hover:-translate-y-0.5"
+                    className="rounded-full bg-cream px-7 py-3.5 text-sm font-bold text-wine-deep transition-transform hover:-translate-y-0.5"
                   >
                     {clinic.phone}
                   </a>
                   <Link
                     href="/visit"
-                    className="rounded-full border border-mist/30 px-7 py-3.5 text-sm font-medium text-mist transition-colors hover:border-mist/60"
+                    className="rounded-full border border-cream/40 px-7 py-3.5 text-sm font-medium text-cream transition-colors hover:border-cream/70"
                   >
                     오시는 길
                   </Link>

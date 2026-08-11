@@ -7,7 +7,7 @@ import Ornament from "@/components/Ornament";
 /** 나선 무대 위 챕터 패널들 — 포도줄기를 감아 도는, 각 페이지로 향하는 8장의 카드 */
 
 const shell =
-  "rounded-[2rem] border border-mist/10 bg-gradient-to-b from-[rgba(30,17,25,0.9)] to-[rgba(20,11,17,0.86)] p-7 shadow-[0_0_90px_rgba(109,39,67,0.3)] ring-1 ring-gold/[0.08] md:p-10";
+  "rounded-[2rem] border border-mist/10 bg-gradient-to-b from-[rgba(255,253,250,0.92)] to-[rgba(250,244,236,0.88)] p-7 shadow-[0_0_90px_rgba(92,36,64,0.12)] ring-1 ring-gold/25 md:p-10";
 
 /** 장식 라인이 딸린 아이브로우 */
 function Eyebrow({ children }: { children: string }) {
@@ -28,7 +28,7 @@ function PageLink({ href, label }: { href: string; label: string }) {
       href={href}
       className="group mt-6 inline-flex items-center gap-2.5 text-sm font-semibold text-gold-soft transition-colors hover:text-rose"
     >
-      <span className="block h-1.5 w-1.5 rounded-full bg-gradient-to-br from-rose to-wine shadow-[0_0_8px_rgba(217,139,166,0.9)]" />
+      <span className="block h-1.5 w-1.5 rounded-full bg-gradient-to-br from-rose to-wine shadow-[0_0_8px_rgba(168,78,110,0.55)]" />
       {label}
       <span
         aria-hidden
@@ -46,7 +46,7 @@ function CenterRow({ s }: { s: (typeof services)[number] }) {
     <li>
       <Link
         href={`/services/${s.key}`}
-        className="group block rounded-2xl border border-mist/10 bg-white/[0.03] px-5 py-3 transition-colors hover:border-rose/40"
+        className="group block rounded-2xl border border-mist/10 bg-white/55 px-5 py-3 transition-colors hover:border-rose/40"
       >
         <div className="flex items-baseline justify-between gap-3">
           <p className="font-display text-[15px] font-semibold text-mist group-hover:text-rose md:text-lg">
@@ -202,7 +202,7 @@ export function ChapterCare() {
         {careSystem.map((c) => (
           <div
             key={c.step}
-            className="rounded-2xl border border-mist/10 bg-white/[0.03] px-3.5 py-2.5"
+            className="rounded-2xl border border-mist/10 bg-white/55 px-3.5 py-2.5"
           >
             <p className="text-[9px] font-semibold tracking-[0.25em] text-gold">
               STEP {c.step}
@@ -283,7 +283,7 @@ export function ChapterVisit() {
       <div className="mt-6 flex flex-wrap gap-3">
         <a
           href={clinic.phoneHref}
-          className="rounded-full bg-gradient-to-r from-wine to-grape px-7 py-3.5 text-sm font-semibold text-mist shadow-[0_0_32px_rgba(141,68,103,0.55)] transition-transform hover:-translate-y-0.5"
+          className="rounded-full bg-gradient-to-r from-wine to-grape px-7 py-3.5 text-sm font-semibold text-cream shadow-[0_0_32px_rgba(92,36,64,0.28)] transition-transform hover:-translate-y-0.5"
         >
           {clinic.phone} 전화 상담
         </a>

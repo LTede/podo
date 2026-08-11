@@ -32,7 +32,7 @@ export default function Services() {
           <Tilt className="reveal md:col-span-2" max={5}>
           <a
             href={`/services/${signature.key}`}
-            className="group relative block h-full overflow-hidden rounded-3xl bg-gradient-to-br from-wine via-noir-3 to-grape p-8 shadow-[0_0_60px_rgba(141,68,103,0.35)] ring-1 ring-rose/20 md:p-12"
+            className="group relative block h-full overflow-hidden rounded-3xl bg-gradient-to-br from-wine via-wine-deep to-grape p-8 shadow-[0_0_60px_rgba(92,36,64,0.18)] ring-1 ring-rose/20 md:p-12"
           >
             <div
               aria-hidden
@@ -41,17 +41,17 @@ export default function Services() {
             <p className="text-[11px] font-semibold tracking-[0.28em] text-gold-soft">
               SIGNATURE · {signature.en.toUpperCase()}
             </p>
-            <h3 className="font-display mt-4 text-3xl font-semibold text-mist md:text-4xl">
+            <h3 className="font-display mt-4 text-3xl font-semibold text-cream md:text-4xl">
               {signature.label}
             </h3>
-            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-mist/65">
+            <p className="mt-4 max-w-md text-[15px] leading-relaxed text-cream/75">
               {signature.desc}
             </p>
             <ul className="mt-8 flex flex-wrap gap-2">
               {signature.items.map((item) => (
                 <li
                   key={item}
-                  className="rounded-full border border-mist/20 px-4 py-1.5 text-[13px] text-mist/80"
+                  className="rounded-full border border-cream/30 px-4 py-1.5 text-[13px] text-cream/85"
                 >
                   {item}
                 </li>
@@ -85,7 +85,7 @@ export default function Services() {
                 {s.items.map((item) => (
                   <li
                     key={item}
-                    className="rounded-full bg-white/5 px-3 py-1 text-xs text-mist/55"
+                    className="rounded-full bg-white/70 px-3 py-1 text-xs text-mist/55"
                   >
                     {item}
                   </li>
