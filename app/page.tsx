@@ -1,12 +1,15 @@
 import Header from "@/components/Header";
 import IntroOverlay from "@/components/IntroOverlay";
 import Nebula from "@/components/gl/Nebula";
-import Hero from "@/components/sections/Hero";
-import Philosophy from "@/components/sections/Philosophy";
-import Services from "@/components/sections/Services";
-import Doctor from "@/components/sections/Doctor";
-import Care from "@/components/sections/Care";
-import Visit from "@/components/sections/Visit";
+import SpiralStage from "@/components/spiral/SpiralStage";
+import {
+  ChapterHero,
+  ChapterPhilosophy,
+  ChapterServices,
+  ChapterDoctor,
+  ChapterCare,
+  ChapterVisit,
+} from "@/components/spiral/chapters";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -16,12 +19,14 @@ export default function Home() {
       <IntroOverlay />
       <Header />
       <main>
-        <Hero />
-        <Philosophy />
-        <Services />
-        <Doctor />
-        <Care />
-        <Visit />
+        <SpiralStage>
+          <ChapterHero />
+          <ChapterPhilosophy />
+          <ChapterServices />
+          <ChapterDoctor />
+          <ChapterCare />
+          <ChapterVisit />
+        </SpiralStage>
       </main>
       <Footer />
     </>

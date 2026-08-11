@@ -59,7 +59,11 @@ function Dust({ count }: { count: number }) {
   useFrame(({ clock, pointer }) => {
     if (!points.current) return;
     const t = clock.elapsedTime;
-    points.current.rotation.z = t * 0.012;
+    // 스크롤과 함께 별가루도 나선으로 감긴다
+    const doc = document.documentElement;
+    const total = doc.scrollHeight - window.innerHeight;
+    const sp = total > 0 ? window.scrollY / total : 0;
+    points.current.rotation.z = t * 0.012 + sp * 2.4;
     points.current.position.y = Math.sin(t * 0.18) * 0.15;
     mouse.current.x += (pointer.x - mouse.current.x) * 0.03;
     mouse.current.y += (pointer.y - mouse.current.y) * 0.03;
@@ -106,6 +110,10 @@ function GlowOrbs() {
   useFrame(({ clock }) => {
     if (!group.current) return;
     const t = clock.elapsedTime;
+    const doc = document.documentElement;
+    const total = doc.scrollHeight - window.innerHeight;
+    group.current.rotation.z =
+      total > 0 ? (window.scrollY / total) * 0.9 : 0;
     group.current.children.forEach((child, i) => {
       child.position.y += Math.sin(t * (0.1 + i * 0.05) + i * 2) * 0.0015;
       child.position.x += Math.cos(t * (0.08 + i * 0.04) + i) * 0.0012;
