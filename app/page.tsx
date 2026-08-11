@@ -5,9 +5,11 @@ import SpiralStage from "@/components/spiral/SpiralStage";
 import {
   ChapterHero,
   ChapterPhilosophy,
-  ChapterServices,
+  ChapterSignature,
+  ChapterCenters,
   ChapterDoctor,
   ChapterCare,
+  ChapterAbout,
   ChapterVisit,
 } from "@/components/spiral/chapters";
 import Footer from "@/components/Footer";
@@ -22,9 +24,11 @@ export default function Home() {
         <SpiralStage>
           <ChapterHero />
           <ChapterPhilosophy />
-          <ChapterServices />
+          <ChapterSignature />
+          <ChapterCenters />
           <ChapterDoctor />
           <ChapterCare />
+          <ChapterAbout />
           <ChapterVisit />
         </SpiralStage>
       </main>

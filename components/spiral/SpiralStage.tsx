@@ -14,14 +14,25 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 /** 챕터당 스크롤 길이(vh) — 클수록 회전이 느긋해짐 */
-const CH_VH = 130;
-/** 챕터 간 링 회전각 */
-const STEP = 60;
+const CH_VH = 115;
+/** 챕터 간 링 회전각 — 8챕터 × 45° = 완전한 원형 (Nebula의 Vine 위상과 동기) */
+const STEP = 45;
 /** 챕터당 나선 하강량(px) */
-const DY = 120;
+const DY = 100;
+/** 링 기울기 — 원형 배치가 눈에 읽히도록 살짝 내려다보는 시점 */
+const TILT = 5;
 
-const IDS = ["top", "philosophy", "services", "doctor", "care", "visit"];
-const LABELS = ["포도", "철학", "진료", "의료진", "케어", "예약"];
+const IDS = [
+  "top",
+  "philosophy",
+  "services",
+  "centers",
+  "doctor",
+  "care",
+  "about",
+  "visit",
+];
+const LABELS = ["포도", "철학", "진료", "센터", "의료진", "케어", "소개", "예약"];
 
 /** 나선형 스크롤 무대 — 스크롤이 링을 돌려 다음 챕터가 눈앞으로 회전해 들어온다 */
 export default function SpiralStage({ children }: { children: ReactNode }) {
@@ -44,8 +55,9 @@ export default function SpiralStage({ children }: { children: ReactNode }) {
     );
     const measure = () => {
       const w = Math.min(window.innerWidth * 0.92, 780);
+      // 45° 스텝 기준 — 이웃 카드와 여백을 두어 원형 간격이 읽히도록
       setRadius(
-        Math.round(((w / 2) / Math.tan(((STEP / 2) * Math.PI) / 180)) * 1.18)
+        Math.round(((w / 2) / Math.tan(((STEP / 2) * Math.PI) / 180)) * 1.12)
       );
     };
     measure();
@@ -60,15 +72,16 @@ export default function SpiralStage({ children }: { children: ReactNode }) {
       const apply = (progress: number) => {
         const f = progress * (n - 1);
         if (ring.current) {
-          ring.current.style.transform = `translateZ(${-radius}px) rotateY(${
+          ring.current.style.transform = `translateZ(${-radius}px) rotateX(${TILT}deg) rotateY(${
             -f * STEP
           }deg) translateY(${-f * DY}px)`;
         }
         panelRefs.current.forEach((p, i) => {
           if (!p) return;
           const d = Math.abs(i - f);
+          // 이웃 두 장까지 은은하게 보이도록 — 원형 실루엣이 항상 읽힌다
           p.style.opacity = String(
-            Math.max(0.08, Math.min(1, 1.18 - d * 0.85))
+            Math.max(0.06, Math.min(1, 1.22 - d * 0.52))
           );
           p.style.pointerEvents = d < 0.5 ? "auto" : "none";
         });
@@ -161,7 +174,7 @@ export default function SpiralStage({ children }: { children: ReactNode }) {
           className="absolute inset-0"
           style={{
             transformStyle: "preserve-3d",
-            transform: `translateZ(${-radius}px)`,
+            transform: `translateZ(${-radius}px) rotateX(${TILT}deg)`,
           }}
         >
           {panels.map((child, i) => (

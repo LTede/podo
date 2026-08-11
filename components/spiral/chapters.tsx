@@ -1,21 +1,32 @@
 import Link from "next/link";
 import { clinic, services } from "@/lib/clinic";
 import { careSystem } from "@/lib/content";
+import { greeting, facilities } from "@/lib/about";
+import Ornament from "@/components/Ornament";
 
-/** 나선 무대 위 챕터 패널들 — 포도줄기를 감아 도는, 각 페이지로 향하는 카드 */
+/** 나선 무대 위 챕터 패널들 — 포도줄기를 감아 도는, 각 페이지로 향하는 8장의 카드 */
 
 const shell =
-  "rounded-[2rem] border border-mist/10 bg-[rgba(24,13,20,0.82)] p-7 shadow-[0_0_90px_rgba(109,39,67,0.28)] md:p-11";
+  "rounded-[2rem] border border-mist/10 bg-gradient-to-b from-[rgba(30,17,25,0.9)] to-[rgba(20,11,17,0.86)] p-7 shadow-[0_0_90px_rgba(109,39,67,0.3)] ring-1 ring-gold/[0.08] md:p-10";
 
-const eyebrow =
-  "text-[10px] font-semibold tracking-[0.32em] text-gold md:text-[11px]";
+/** 장식 라인이 딸린 아이브로우 */
+function Eyebrow({ children }: { children: string }) {
+  return (
+    <div>
+      <p className="text-[10px] font-semibold tracking-[0.32em] text-gold md:text-[11px]">
+        {children}
+      </p>
+      <Ornament className="mt-2 h-2.5 w-24" />
+    </div>
+  );
+}
 
 /** 카드 하단 — 해당 서브페이지로 들어가는 포털 링크 */
 function PageLink({ href, label }: { href: string; label: string }) {
   return (
     <Link
       href={href}
-      className="group mt-7 inline-flex items-center gap-2.5 text-sm font-semibold text-gold-soft transition-colors hover:text-rose"
+      className="group mt-6 inline-flex items-center gap-2.5 text-sm font-semibold text-gold-soft transition-colors hover:text-rose"
     >
       <span className="block h-1.5 w-1.5 rounded-full bg-gradient-to-br from-rose to-wine shadow-[0_0_8px_rgba(217,139,166,0.9)]" />
       {label}
@@ -29,10 +40,32 @@ function PageLink({ href, label }: { href: string; label: string }) {
   );
 }
 
+/** 진료 센터 링크 행 */
+function CenterRow({ s }: { s: (typeof services)[number] }) {
+  return (
+    <li>
+      <Link
+        href={`/services/${s.key}`}
+        className="group block rounded-2xl border border-mist/10 bg-white/[0.03] px-5 py-3 transition-colors hover:border-rose/40"
+      >
+        <div className="flex items-baseline justify-between gap-3">
+          <p className="font-display text-[15px] font-semibold text-mist group-hover:text-rose md:text-lg">
+            {s.label}
+          </p>
+          <p className="text-[9px] tracking-[0.2em] text-gold">
+            {s.en.toUpperCase()}
+          </p>
+        </div>
+        <p className="mt-0.5 truncate text-[12px] text-mist/45">{s.desc}</p>
+      </Link>
+    </li>
+  );
+}
+
 export function ChapterHero() {
   return (
     <article className={shell}>
-      <p className={eyebrow}>GANGNAM · PRIVATE WOMEN&apos;S CLINIC</p>
+      <Eyebrow>GANGNAM · PRIVATE WOMEN&apos;S CLINIC</Eyebrow>
       <h1 className="font-display mt-5 text-4xl font-medium leading-[1.15] tracking-tight text-mist md:text-6xl">
         가장 사적인
         <br />
@@ -60,7 +93,7 @@ export function ChapterHero() {
         </a>
       </div>
       <p className="mt-8 text-[10px] tracking-[0.25em] text-mist/30">
-        연세대 의대 · 여성성형 교과서 저자 · 세계 100대 의료인 · VIP 입원실 6실
+        연세대 의대 · 여성성형 교과서 저자 · 수술 3만 례 · VIP 입원실 6실
       </p>
     </article>
   );
@@ -69,7 +102,7 @@ export function ChapterHero() {
 export function ChapterPhilosophy() {
   return (
     <article className={shell}>
-      <p className={eyebrow}>01 · PODO PHILOSOPHY</p>
+      <Eyebrow>01 · PODO PHILOSOPHY</Eyebrow>
       <blockquote className="font-display mt-6 text-xl font-medium leading-[1.65] text-mist md:text-3xl">
         아름다움은 보여주기 위한 것이 아니라,
         <br />
@@ -98,43 +131,42 @@ export function ChapterPhilosophy() {
   );
 }
 
-export function ChapterServices() {
+/** 수술 중심 시그니처 진료 4센터 */
+export function ChapterSignature() {
   return (
     <article className={shell}>
-      <p className={eyebrow}>02 · MEDICAL SERVICES</p>
+      <Eyebrow>02 · SIGNATURE</Eyebrow>
       <h2 className="font-display mt-5 text-2xl font-medium leading-snug text-mist md:text-4xl">
-        오늘의 고민이 무엇이든,
+        수술의 기준을 만든
         <br />
-        <span className="text-glow-gradient">해답은 준비되어 있습니다</span>
+        <span className="text-glow-gradient">시그니처 진료</span>
       </h2>
-      <ul className="mt-7 grid gap-2.5 md:grid-cols-2">
-        {services.map((s) => (
-          <li key={s.key}>
-            <Link
-              href={`/services/${s.key}`}
-              className="group block rounded-2xl border border-mist/10 bg-white/[0.03] px-5 py-3.5 transition-colors hover:border-rose/40"
-            >
-              <div className="flex items-baseline justify-between gap-3">
-                <p className="font-display text-base font-semibold text-mist group-hover:text-rose md:text-lg">
-                  {s.label}
-                </p>
-                <p className="text-[9px] tracking-[0.2em] text-gold">
-                  {s.en.toUpperCase()}
-                </p>
-              </div>
-              <p className="mt-1 truncate text-[12px] text-mist/45">{s.desc}</p>
-            </Link>
-          </li>
+      <ul className="mt-6 space-y-2.5">
+        {services.slice(0, 4).map((s) => (
+          <CenterRow key={s.key} s={s} />
         ))}
       </ul>
-      <div className="flex items-center justify-between">
-        <PageLink href="/services" label="진료 안내 자세히" />
-        <p className="mt-7 text-sm font-semibold text-mist/50">
-          <a href="#visit" className="transition-colors hover:text-rose">
-            상담 예약 →
-          </a>
-        </p>
-      </div>
+      <PageLink href="/services" label="진료 안내 전체 보기" />
+    </article>
+  );
+}
+
+/** 재생·에너지 스페셜 4센터 */
+export function ChapterCenters() {
+  return (
+    <article className={shell}>
+      <Eyebrow>03 · SPECIAL CENTERS</Eyebrow>
+      <h2 className="font-display mt-5 text-2xl font-medium leading-snug text-mist md:text-4xl">
+        몸이 스스로 회복하도록,
+        <br />
+        <span className="text-glow-gradient">스페셜 센터</span>
+      </h2>
+      <ul className="mt-6 space-y-2.5">
+        {services.slice(4).map((s) => (
+          <CenterRow key={s.key} s={s} />
+        ))}
+      </ul>
+      <PageLink href="/services" label="진료 안내 전체 보기" />
     </article>
   );
 }
@@ -143,19 +175,19 @@ export function ChapterDoctor() {
   const { doctor } = clinic;
   return (
     <article className={shell}>
-      <p className={eyebrow}>03 · MEDICAL DIRECTOR</p>
+      <Eyebrow>04 · MEDICAL DIRECTOR</Eyebrow>
       <h2 className="font-display mt-5 text-2xl font-medium leading-snug text-mist md:text-4xl">
         전문의들이 펼쳐보는 교과서,
         <br />
         <span className="text-glow-gradient">그 저자에게 받는 진료</span>
       </h2>
-      <div className="mt-7 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+      <div className="mt-6 flex flex-wrap items-baseline gap-x-4 gap-y-1">
         <p className="font-display text-2xl font-semibold text-mist">
           {doctor.name} <span className="text-base font-normal">원장</span>
         </p>
         <p className="text-[13px] text-mist/50">{doctor.title}</p>
       </div>
-      <ul className="mt-5 space-y-2.5 border-t border-mist/10 pt-5">
+      <ul className="mt-4 space-y-2 border-t border-mist/10 pt-4">
         {doctor.credentials.slice(0, 5).map((c) => (
           <li
             key={c}
@@ -166,7 +198,7 @@ export function ChapterDoctor() {
           </li>
         ))}
       </ul>
-      <div className="mt-7 grid grid-cols-4 gap-3 border-t border-mist/10 pt-6 text-center">
+      <div className="mt-6 grid grid-cols-4 gap-3 border-t border-mist/10 pt-5 text-center">
         {[
           ["25+", "임상 연차"],
           ["3만+", "누적 수술 례"],
@@ -189,7 +221,7 @@ export function ChapterDoctor() {
 export function ChapterCare() {
   return (
     <article className={shell}>
-      <p className={eyebrow}>04 · SAFETY &amp; EMOTIONAL CARE</p>
+      <Eyebrow>05 · SAFETY &amp; EMOTIONAL CARE</Eyebrow>
       <h2 className="font-display mt-5 text-2xl font-medium leading-snug text-mist md:text-4xl">
         병원에 왔다는 사실조차
         <br />
@@ -199,7 +231,7 @@ export function ChapterCare() {
         전 객실 VIP 1인실, 예약제 프라이버시 동선 — 접수부터 귀가까지 다른
         환자와 마주치지 않습니다.
       </p>
-      <div className="mt-7 grid gap-2.5 md:grid-cols-2">
+      <div className="mt-6 grid gap-2.5 md:grid-cols-2">
         {careSystem.map((c) => (
           <div
             key={c.step}
@@ -222,18 +254,48 @@ export function ChapterCare() {
   );
 }
 
+export function ChapterAbout() {
+  return (
+    <article className={shell}>
+      <Eyebrow>06 · ABOUT PODO</Eyebrow>
+      <blockquote className="font-display mt-6 text-xl font-medium leading-[1.6] text-mist md:text-3xl">
+        &ldquo;여성은 그 자체만으로
+        <br />
+        <span className="text-glow-gradient">사랑받기에 충분합니다&rdquo;</span>
+      </blockquote>
+      <p className="mt-4 max-w-md text-[13px] leading-relaxed text-mist/50 md:text-sm">
+        2003년부터 여성성형의 기준을 만들어온 병원 — 교과서가 쓰이고, 술식이
+        개발된 곳. {greeting.sign}
+      </p>
+      <div className="mt-6 grid grid-cols-2 gap-2.5 md:grid-cols-4">
+        {facilities.map((f) => (
+          <div
+            key={f.label}
+            className={`rounded-2xl bg-gradient-to-br ${f.tone} px-3 py-5 text-center ring-1 ring-mist/10`}
+          >
+            <p className="font-display text-[13px] font-semibold text-mist">
+              {f.label}
+            </p>
+          </div>
+        ))}
+      </div>
+      <PageLink href="/about" label="포도 소개 자세히" />
+    </article>
+  );
+}
+
 export function ChapterVisit() {
   return (
     <article className={shell}>
-      <p className={eyebrow}>05 · RESERVATION</p>
+      <Eyebrow>07 · RESERVATION</Eyebrow>
       <h2 className="font-display mt-5 text-2xl font-medium leading-snug text-mist md:text-4xl">
         고민하는 시간이 가장 깁니다.
         <br />
         <span className="text-glow-gradient">시작은 전화 한 통.</span>
       </h2>
-      <ul className="mt-7 divide-y divide-mist/10 border-y border-mist/10">
+      <ul className="mt-6 divide-y divide-mist/10 border-y border-mist/10">
         {clinic.hours.map((h) => (
-          <li key={h.day} className="flex items-baseline justify-between py-3">
+          <li key={h.day} className="flex items-baseline justify-between py-2.5">
             <span className="text-sm font-medium text-mist">{h.day}</span>
             <span className="text-sm text-mist/55">
               {h.time}
@@ -246,12 +308,12 @@ export function ChapterVisit() {
           </li>
         ))}
       </ul>
-      <p className="mt-5 text-[13px] leading-relaxed text-mist/60">
+      <p className="mt-4 text-[13px] leading-relaxed text-mist/60">
         {clinic.address}
         <br />
         <span className="text-gold-soft">{clinic.addressShort}</span>
       </p>
-      <div className="mt-7 flex flex-wrap gap-3">
+      <div className="mt-6 flex flex-wrap gap-3">
         <a
           href={clinic.phoneHref}
           className="rounded-full bg-gradient-to-r from-wine to-grape px-7 py-3.5 text-sm font-semibold text-mist shadow-[0_0_32px_rgba(141,68,103,0.55)] transition-transform hover:-translate-y-0.5"
