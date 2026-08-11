@@ -25,25 +25,25 @@ const CARE_STEPS = [
 
 /* 시설 사진 슬롯 — 실제 사진 수급 시 /public/images/facility-*.jpg 로 교체 */
 const FACILITY_SLOTS = [
-  { label: "VIP 입원실", tone: "from-blush to-grape-soft/40" },
-  { label: "프라이빗 상담실", tone: "from-ivory-deep to-gold-soft/40" },
-  { label: "수술실 · 회복실", tone: "from-grape-soft/30 to-wine/30" },
+  { label: "VIP 입원실", tone: "from-wine/70 via-noir-3 to-grape/50" },
+  { label: "프라이빗 상담실", tone: "from-grape/60 via-noir-3 to-gold/30" },
+  { label: "수술실 · 회복실", tone: "from-noir-3 via-wine/60 to-rose-deep/40" },
 ];
 
 export default function Care() {
   return (
-    <section id="care" className="bg-ivory py-28 md:py-40">
+    <section id="care" className="relative py-28 md:py-40">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <Reveal>
           <p className="reveal text-[11px] font-semibold tracking-[0.3em] text-gold md:text-xs">
             SAFETY &amp; EMOTIONAL CARE
           </p>
-          <h2 className="reveal font-display mt-5 max-w-3xl text-3xl font-medium leading-snug tracking-tight text-charcoal md:text-5xl">
+          <h2 className="reveal font-display mt-5 max-w-3xl text-3xl font-medium leading-snug tracking-tight text-mist md:text-5xl">
             병원에 왔다는 사실조차
             <br />
-            <span className="text-wine">아무도 모르게</span>
+            <span className="text-glow-gradient">아무도 모르게</span>
           </h2>
-          <p className="reveal mt-6 max-w-xl text-[15px] leading-relaxed text-charcoal/60">
+          <p className="reveal mt-6 max-w-xl text-[15px] leading-relaxed text-mist/50">
             접수부터 회복, 귀가까지 다른 환자와 마주치지 않는 프라이버시 동선.
             당신의 시간은 온전히 당신의 것입니다.
           </p>
@@ -54,18 +54,18 @@ export default function Care() {
           {FACILITY_SLOTS.map((f, i) => (
             <figure
               key={f.label}
-              className={`reveal group relative overflow-hidden rounded-3xl ${
+              className={`reveal group relative overflow-hidden rounded-3xl ring-1 ring-mist/10 ${
                 i === 0 ? "md:-translate-y-6" : i === 2 ? "md:translate-y-6" : ""
               }`}
             >
               <div
                 className={`aspect-[4/5] bg-gradient-to-br ${f.tone} transition-transform duration-700 group-hover:scale-105`}
               />
-              <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-charcoal/50 to-transparent p-6">
-                <span className="font-display text-lg font-medium text-ivory">
+              <figcaption className="absolute inset-x-0 bottom-0 flex items-end justify-between bg-gradient-to-t from-noir/80 to-transparent p-6">
+                <span className="font-display text-lg font-medium text-mist">
                   {f.label}
                 </span>
-                <span className="text-[10px] tracking-[0.2em] text-ivory/60">
+                <span className="text-[10px] tracking-[0.2em] text-mist/40">
                   PHOTO
                 </span>
               </figcaption>
@@ -75,7 +75,7 @@ export default function Care() {
 
         {/* 케어 프로세스 */}
         <Reveal
-          className="mt-20 grid gap-10 border-t border-line pt-14 md:mt-28 md:grid-cols-4 md:gap-8"
+          className="mt-20 grid gap-10 border-t border-mist/10 pt-14 md:mt-28 md:grid-cols-4 md:gap-8"
           stagger={0.08}
         >
           {CARE_STEPS.map((c) => (
@@ -83,10 +83,10 @@ export default function Care() {
               <p className="text-[11px] font-semibold tracking-[0.25em] text-gold">
                 {c.step}
               </p>
-              <h3 className="font-display mt-3 text-xl font-semibold text-charcoal">
+              <h3 className="font-display mt-3 text-xl font-semibold text-mist">
                 {c.title}
               </h3>
-              <p className="mt-3 text-sm leading-relaxed text-charcoal/60">
+              <p className="mt-3 text-sm leading-relaxed text-mist/50">
                 {c.desc}
               </p>
             </div>

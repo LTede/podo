@@ -67,7 +67,7 @@ export default function IntroOverlay() {
     <div
       ref={ref}
       aria-hidden
-      className="fixed inset-0 z-[70] flex items-center justify-center bg-wine-deep"
+      className="fixed inset-0 z-[70] flex items-center justify-center bg-noir"
     >
       <div data-intro-stage className="flex flex-col items-center">
         <div data-intro-ring className="relative h-52 w-52 md:h-64 md:w-64">

@@ -44,13 +44,13 @@ export default function Philosophy() {
     () => {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
         return;
-      // 스크롤에 따라 문장이 잉크처럼 차오르는 연출
+      // 스크롤에 따라 문장이 빛으로 차오르는 연출
       gsap.utils
         .toArray<HTMLElement>("[data-manifesto-line]")
         .forEach((line) => {
           gsap.fromTo(
             line,
-            { opacity: 0.14, y: 14 },
+            { opacity: 0.12, y: 14 },
             {
               opacity: 1,
               y: 0,
@@ -72,12 +72,12 @@ export default function Philosophy() {
     <section
       id="philosophy"
       ref={ref}
-      className="relative overflow-hidden bg-ivory-deep py-28 md:py-40"
+      className="relative overflow-hidden py-28 md:py-40"
     >
       {/* 워터마크 */}
       <p
         aria-hidden
-        className="font-display pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 select-none whitespace-nowrap text-[22vw] font-semibold leading-none tracking-tight text-wine/[0.04]"
+        className="font-display pointer-events-none absolute -top-6 left-1/2 -translate-x-1/2 select-none whitespace-nowrap text-[22vw] font-semibold leading-none tracking-tight text-rose/[0.04]"
       >
         PODO
       </p>
@@ -87,7 +87,7 @@ export default function Philosophy() {
           PODO PHILOSOPHY
         </p>
 
-        <blockquote className="font-display max-w-4xl text-2xl font-medium leading-[1.6] tracking-tight text-charcoal md:text-[2.6rem] md:leading-[1.55]">
+        <blockquote className="font-display max-w-4xl text-2xl font-medium leading-[1.6] tracking-tight text-mist md:text-[2.6rem] md:leading-[1.55]">
           {MANIFESTO.map((line) => (
             <span key={line} data-manifesto-line className="block">
               {line}
@@ -103,13 +103,13 @@ export default function Philosophy() {
               <p className="text-xs font-semibold tracking-[0.25em] text-gold">
                 {v.no}
               </p>
-              <h3 className="font-display mt-4 text-2xl font-semibold text-wine">
+              <h3 className="font-display mt-4 text-2xl font-semibold text-rose">
                 {v.title}
-                <span className="ml-3 text-sm font-normal tracking-widest text-stone">
+                <span className="ml-3 text-sm font-normal tracking-widest text-mist/35">
                   {v.en.toUpperCase()}
                 </span>
               </h3>
-              <p className="mt-4 text-[15px] leading-relaxed text-charcoal/65">
+              <p className="mt-4 text-[15px] leading-relaxed text-mist/55">
                 {v.desc}
               </p>
             </div>
