@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+/* ── 포도여성의원 디자인 토큰 ─────────────────────────────
+   quiet luxury medical: 아이보리 바탕 + 딥 와인(포도) + 골드 포인트 */
+@theme {
+  --color-ivory: #faf7f2;
+  --color-ivory-deep: #f3ede4;
+  --color-blush: #f2e7e3;
+  --color-wine: #5c2a3d;
+  --color-wine-deep: #3d1b29;
+  --color-grape: #7b4b63;
+  --color-grape-soft: #a97f95;
+  --color-gold: #b08d57;
+  --color-gold-soft: #cfb389;
+  --color-charcoal: #2a2226;
+  --color-stone: #877c81;
+  --color-line: #e5dcd3;
+
+  --font-display: "Noto Serif KR", "Apple SD Gothic Neo", serif;
+  --font-body: "Pretendard Variable", Pretendard, "Apple SD Gothic Neo",
+    -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: var(--color-ivory);
+  color: var(--color-charcoal);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+
+::selection {
+  background: var(--color-wine);
+  color: var(--color-ivory);
+}
+
+/* 스크롤 리빌 기본 상태 (GSAP가 제어) */
+.reveal {
+  opacity: 0;
+  transform: translateY(48px);
+  will-change: opacity, transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* 얇은 라인 장식 */
+.hairline {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-gold) 50%,
+    transparent
+  );
+}
