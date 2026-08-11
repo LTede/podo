@@ -19,12 +19,21 @@ export default function Hero() {
     () => {
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches)
         return;
-      gsap
-        .timeline({ defaults: { ease: "power3.out" } })
+      // 인트로가 재생 중이면 줌인 시점에 이어받아 시작
+      const introPending = !sessionStorage.getItem("podo-intro");
+      const tl = gsap
+        .timeline({ paused: introPending, defaults: { ease: "power3.out" } })
+        // 회전 인트로에서 이어지듯 — 무대 전체가 살짝 돌며 정면으로
+        .fromTo(
+          "[data-hero-stage]",
+          { scale: 0.94, rotationZ: -2.5, opacity: 0.4, transformOrigin: "50% 40%" },
+          { scale: 1, rotationZ: 0, opacity: 1, duration: 1.3, ease: "power2.out" }
+        )
         .fromTo(
           "[data-hero-line]",
           { yPercent: 110, opacity: 0 },
-          { yPercent: 0, opacity: 1, duration: 1.2, stagger: 0.14, delay: 0.15 }
+          { yPercent: 0, opacity: 1, duration: 1.2, stagger: 0.14 },
+          "-=0.9"
         )
         .fromTo(
           "[data-hero-fade]",
@@ -32,6 +41,12 @@ export default function Hero() {
           { y: 0, opacity: 1, duration: 0.9, stagger: 0.1 },
           "-=0.55"
         );
+
+      if (introPending) {
+        const play = () => tl.play();
+        window.addEventListener("podo-intro-reveal", play, { once: true });
+        return () => window.removeEventListener("podo-intro-reveal", play);
+      }
     },
     { scope: ref }
   );
@@ -42,18 +57,17 @@ export default function Hero() {
       ref={ref}
       className="relative flex min-h-svh flex-col overflow-hidden"
     >
-      {/* 카피 뒤 은은한 글로우 — 파티클 위 가독성 확보 */}
-      <div
-        aria-hidden
-        className="absolute left-0 top-1/2 h-[80%] w-full max-w-3xl -translate-y-1/2 md:w-[60%]"
-        style={{
-          background:
-            "radial-gradient(ellipse closest-side, rgba(250,247,242,0.85), rgba(250,247,242,0.45) 55%, transparent 100%)",
-        }}
-      />
+      {/* 브랜드 그라데이션 오브 — 정적, 은은하게 */}
+      <div aria-hidden className="absolute inset-0">
+        <div className="absolute -left-32 top-1/4 h-[34rem] w-[34rem] rounded-full bg-blush blur-[110px]" />
+        <div className="absolute -right-24 top-8 h-[26rem] w-[26rem] rounded-full bg-grape-soft/25 blur-[110px]" />
+        <div className="absolute bottom-0 left-1/3 h-[22rem] w-[30rem] rounded-full bg-gold-soft/25 blur-[110px]" />
+      </div>
 
-      {/* 카피 — 배경은 글로벌 3D 저니 씬이 담당 */}
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-5 pt-24 md:px-8">
+      <div
+        data-hero-stage
+        className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-5 pt-24 md:px-8"
+      >
         <p
           data-hero-fade
           className="mb-5 text-[11px] font-semibold tracking-[0.3em] text-gold md:text-xs"
@@ -105,7 +119,7 @@ export default function Hero() {
             <span className="absolute inset-x-0 top-0 h-1/2 animate-[scroll-hint_1.8s_ease-in-out_infinite] bg-wine" />
           </span>
           <span className="text-[11px] tracking-[0.25em] text-charcoal/45">
-            SCROLL — 공간이 움직입니다
+            SCROLL
           </span>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import Reveal from "@/components/Reveal";
+import Tilt from "@/components/Tilt";
 import { clinic } from "@/lib/clinic";
 
 const STATS = [
@@ -14,7 +15,7 @@ export default function Doctor() {
   return (
     <section
       id="doctor"
-      className="relative overflow-hidden bg-wine-deep/85 py-28 text-ivory md:py-40"
+      className="relative overflow-hidden bg-wine-deep py-28 text-ivory md:py-40"
     >
       {/* 배경 장식 */}
       <div
@@ -41,7 +42,8 @@ export default function Doctor() {
         <div className="mt-16 grid gap-12 md:mt-24 md:grid-cols-[2fr_3fr] md:gap-20">
           {/* 프로필 이미지 슬롯 — 실제 사진 수급 시 /public/images/doctor.jpg 로 교체 */}
           <Reveal>
-            <figure className="reveal relative aspect-[3/4] overflow-hidden rounded-3xl border border-ivory/10 bg-gradient-to-br from-wine via-wine-deep to-grape/40">
+            <Tilt className="reveal" max={6}>
+            <figure className="relative aspect-[3/4] overflow-hidden rounded-3xl border border-ivory/10 bg-gradient-to-br from-wine via-wine-deep to-grape/40">
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
                 <span className="font-display text-5xl font-semibold tracking-widest text-ivory/20">
                   PODO
@@ -57,6 +59,7 @@ export default function Doctor() {
                 <p className="mt-1 text-[13px] text-ivory/60">{doctor.title}</p>
               </figcaption>
             </figure>
+            </Tilt>
           </Reveal>
 
           {/* 이력 */}

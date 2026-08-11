@@ -1,11 +1,12 @@
 import Reveal from "@/components/Reveal";
+import Tilt from "@/components/Tilt";
 import { services } from "@/lib/clinic";
 
 export default function Services() {
   const [signature, ...rest] = services;
 
   return (
-    <section id="services" className="bg-ivory/55 py-28 md:py-40">
+    <section id="services" className="bg-ivory py-28 md:py-40">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <Reveal>
           <p className="reveal text-[11px] font-semibold tracking-[0.3em] text-gold md:text-xs">
@@ -26,9 +27,10 @@ export default function Services() {
 
         <Reveal className="mt-14 grid gap-5 md:mt-20 md:grid-cols-3" stagger={0.09}>
           {/* 시그니처 카드 — 외음부성형 */}
+          <Tilt className="reveal md:col-span-2" max={5}>
           <a
             href="#visit"
-            className="reveal group relative overflow-hidden rounded-3xl bg-wine p-8 text-ivory shadow-2xl shadow-wine/25 transition-transform duration-500 hover:-translate-y-1.5 md:col-span-2 md:p-12"
+            className="group relative block h-full overflow-hidden rounded-3xl bg-wine p-8 text-ivory shadow-2xl shadow-wine/25 md:p-12"
           >
             <div
               aria-hidden
@@ -60,12 +62,13 @@ export default function Services() {
               </span>
             </p>
           </a>
+          </Tilt>
 
           {rest.map((s) => (
+            <Tilt key={s.key} className="reveal" max={9}>
             <a
-              key={s.key}
               href="#visit"
-              className="reveal group rounded-3xl border border-line bg-white/60 p-8 transition-all duration-500 hover:-translate-y-1.5 hover:border-wine/30 hover:shadow-xl hover:shadow-wine/10"
+              className="group block h-full rounded-3xl border border-line bg-white/60 p-8 transition-colors duration-500 hover:border-wine/30 hover:shadow-xl hover:shadow-wine/10"
             >
               <p className="text-[11px] font-semibold tracking-[0.28em] text-gold">
                 {s.en.toUpperCase()}
@@ -87,6 +90,7 @@ export default function Services() {
                 ))}
               </ul>
             </a>
+            </Tilt>
           ))}
         </Reveal>
       </div>

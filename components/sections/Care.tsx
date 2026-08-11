@@ -32,7 +32,7 @@ const FACILITY_SLOTS = [
 
 export default function Care() {
   return (
-    <section id="care" className="bg-ivory/55 py-28 md:py-40">
+    <section id="care" className="bg-ivory py-28 md:py-40">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <Reveal>
           <p className="reveal text-[11px] font-semibold tracking-[0.3em] text-gold md:text-xs">

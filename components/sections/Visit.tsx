@@ -3,7 +3,7 @@ import { clinic } from "@/lib/clinic";
 
 export default function Visit() {
   return (
-    <section id="visit" className="bg-ivory/45 py-28 md:py-40">
+    <section id="visit" className="bg-ivory-deep py-28 md:py-40">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <div className="grid gap-14 md:grid-cols-2 md:gap-20">
           <Reveal>
