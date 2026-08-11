@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { clinic } from "@/lib/clinic";
 
 const NAV = [
+  { href: "/about", label: "소개" },
   { href: "/philosophy", label: "철학" },
   { href: "/services", label: "진료" },
   { href: "/doctor", label: "의료진" },

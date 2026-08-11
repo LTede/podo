@@ -1,5 +1,6 @@
 import Reveal from "@/components/Reveal";
 import { clinic } from "@/lib/clinic";
+import { consultChannels } from "@/lib/content";
 
 export default function Visit() {
   return (
@@ -78,6 +79,32 @@ export default function Visit() {
             </div>
           </Reveal>
         </div>
+
+        {/* 상담 채널 4종 — 기존 사이트의 상담 체계 계승 */}
+        <Reveal
+          className="mt-16 grid gap-4 border-t border-mist/10 pt-12 md:grid-cols-4"
+          stagger={0.07}
+        >
+          {consultChannels.map((c) => (
+            <a
+              key={c.label}
+              href={c.action === "kakao" ? "#" : clinic.phoneHref}
+              className="glass reveal group rounded-2xl p-6 transition-colors hover:border-rose/40"
+            >
+              <p className="font-display text-lg font-semibold text-mist group-hover:text-rose">
+                {c.label}
+              </p>
+              <p className="mt-2 text-[13px] leading-relaxed text-mist/50">
+                {c.desc}
+              </p>
+              {c.action === "kakao" && (
+                <p className="mt-3 text-[10px] tracking-wide text-gold">
+                  채널 연결 준비 중 — 우선 전화로 문의해주세요
+                </p>
+              )}
+            </a>
+          ))}
+        </Reveal>
       </div>
     </section>
   );

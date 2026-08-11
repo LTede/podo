@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { clinic, services } from "@/lib/clinic";
+import { careSystem } from "@/lib/content";
 
 /** 나선 무대 위 챕터 패널들 — 포도줄기를 감아 도는, 각 페이지로 향하는 카드 */
 
@@ -108,19 +109,21 @@ export function ChapterServices() {
       </h2>
       <ul className="mt-7 grid gap-2.5 md:grid-cols-2">
         {services.map((s) => (
-          <li
-            key={s.key}
-            className="group rounded-2xl border border-mist/10 bg-white/[0.03] px-5 py-3.5 transition-colors hover:border-rose/40"
-          >
-            <div className="flex items-baseline justify-between gap-3">
-              <p className="font-display text-base font-semibold text-mist group-hover:text-rose md:text-lg">
-                {s.label}
-              </p>
-              <p className="text-[9px] tracking-[0.2em] text-gold">
-                {s.en.toUpperCase()}
-              </p>
-            </div>
-            <p className="mt-1 truncate text-[12px] text-mist/45">{s.desc}</p>
+          <li key={s.key}>
+            <Link
+              href={`/services/${s.key}`}
+              className="group block rounded-2xl border border-mist/10 bg-white/[0.03] px-5 py-3.5 transition-colors hover:border-rose/40"
+            >
+              <div className="flex items-baseline justify-between gap-3">
+                <p className="font-display text-base font-semibold text-mist group-hover:text-rose md:text-lg">
+                  {s.label}
+                </p>
+                <p className="text-[9px] tracking-[0.2em] text-gold">
+                  {s.en.toUpperCase()}
+                </p>
+              </div>
+              <p className="mt-1 truncate text-[12px] text-mist/45">{s.desc}</p>
+            </Link>
           </li>
         ))}
       </ul>
@@ -166,9 +169,9 @@ export function ChapterDoctor() {
       <div className="mt-7 grid grid-cols-4 gap-3 border-t border-mist/10 pt-6 text-center">
         {[
           ["25+", "임상 연차"],
+          ["3만+", "누적 수술 례"],
           ["100인", "세계 선정"],
           ["1st", "교과서 집필"],
-          ["6실", "VIP 입원실"],
         ].map(([v, l]) => (
           <div key={l}>
             <p className="text-glow-gradient font-display text-xl font-semibold md:text-3xl">
@@ -193,30 +196,27 @@ export function ChapterCare() {
         <span className="text-glow-gradient">아무도 모르게</span>
       </h2>
       <p className="mt-4 max-w-md text-[13px] leading-relaxed text-mist/50 md:text-sm">
-        접수부터 회복, 귀가까지 다른 환자와 마주치지 않는 프라이버시 동선 —
-        당신의 시간은 온전히 당신의 것입니다.
+        전 객실 VIP 1인실, 예약제 프라이버시 동선 — 접수부터 귀가까지 다른
+        환자와 마주치지 않습니다.
       </p>
-      <div className="mt-7 grid gap-4 md:grid-cols-2">
-        {[
-          ["STEP 1", "1:1 프라이빗 상담", "원장이 직접, 충분한 시간을 들여"],
-          ["STEP 2", "안전수술 시스템", "마취과 협진 · 응급 대응 · 정밀 검사"],
-          ["STEP 3", "VIP 회복 케어", "프리미엄 입원실 6실, 비공개 회복"],
-          ["STEP 4", "평생 사후관리", "정기 검진과 관리로 결과를 오래"],
-        ].map(([s, t, d]) => (
+      <div className="mt-7 grid gap-2.5 md:grid-cols-2">
+        {careSystem.map((c) => (
           <div
-            key={s}
-            className="rounded-2xl border border-mist/10 bg-white/[0.03] p-4"
+            key={c.step}
+            className="rounded-2xl border border-mist/10 bg-white/[0.03] px-4 py-3"
           >
             <p className="text-[9px] font-semibold tracking-[0.25em] text-gold">
-              {s}
+              STEP {c.step}
             </p>
-            <p className="font-display mt-1.5 text-base font-semibold text-mist">
-              {t}
+            <p className="font-display mt-1 text-[15px] font-semibold text-mist">
+              {c.title}
             </p>
-            <p className="mt-1 text-[12px] text-mist/45">{d}</p>
           </div>
         ))}
       </div>
+      <p className="mt-4 text-[11px] text-gold-soft">
+        수술 후 10년 무상 사후관리 — 결과를 오래 책임집니다
+      </p>
       <PageLink href="/care" label="안전수술 · 감성케어 자세히" />
     </article>
   );

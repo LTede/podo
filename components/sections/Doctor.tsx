@@ -4,9 +4,9 @@ import { clinic } from "@/lib/clinic";
 
 const STATS = [
   { value: "25+", label: "여성성형 임상 연차" },
+  { value: "3만+", label: "누적 수술 례" },
   { value: "100인", label: "세계 여성성형 의료인 선정" },
   { value: "1st", label: "여성성형 교과서 집필" },
-  { value: "6실", label: "프리미엄 VIP 입원실" },
 ];
 
 export default function Doctor() {
