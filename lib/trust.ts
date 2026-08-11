@@ -1,12 +1,12 @@
 /** 신뢰 지표 · 증상 네비 · 연혁 — 전수조사 사실 기반 */
 
 export const trustStats = [
-  { value: 2003, label: "개원", suffix: "년", countFrom: 1980 },
-  { value: 25, label: "원장 임상 경력", suffix: "년+", countFrom: 0 },
-  { value: 30000, label: "누적 수술", suffix: "례+", countFrom: 0 },
-  { value: 100, label: "세계 여성성형 의료인", suffix: "인 선정", countFrom: 0 },
-  { value: 6, label: "VIP 1인 입원실", suffix: "실", countFrom: 0 },
-  { value: 10, label: "무상 사후관리", suffix: "년", countFrom: 0 },
+  { value: 2003, label: "개원", suffix: "년", countFrom: 1980, comma: false },
+  { value: 25, label: "원장 임상 경력", suffix: "년+", countFrom: 0, comma: false },
+  { value: 30000, label: "누적 수술", suffix: "례+", countFrom: 0, comma: true },
+  { value: 100, label: "세계 여성성형 의료인", suffix: "인 선정", countFrom: 0, comma: false },
+  { value: 6, label: "VIP 1인 입원실", suffix: "실", countFrom: 0, comma: false },
+  { value: 10, label: "무상 사후관리", suffix: "년", countFrom: 0, comma: false },
 ];
 
 /** 증상 기반 진입 — 방문자의 언어로 쓰인 칩 */
@@ -28,6 +28,6 @@ export const milestones = [
   { year: "", text: "무봉합 100% 레이저 3D 소음순성형 개발" },
   { year: "", text: "반영구 골반인대접합술 · 요실금 술식 · 성감 증진 필러 개발" },
   { year: "", text: "IBC 선정 여성성형 분야 세계 100대 의료인 · Marquis Who's Who 등재" },
-  { year: "", text: "누적 수술 3만 례 — 개원 이래 의료 무사고 기록" },
+  { year: "", text: "누적 수술 3만 례 — 안전 최우선 원칙의 진료" },
   { year: "오늘", text: "VIP 1인실 6실 · 10년 무상 사후관리 · 다국어 진료 안내 운영" },
 ];

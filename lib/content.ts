@@ -96,7 +96,7 @@ export const categories: Category[] = [
       {
         name: "탄력레이저 질성형",
         en: "Laser Vaginoplasty",
-        desc: "마이크로 레이저로 질점막의 자연 주름을 흉터 없이 복원합니다. 충분한 점막 주름은 탄력과 여성질환 예방에 중요합니다.",
+        desc: "마이크로 레이저로 질점막의 자연 주름 복원을 돕습니다. 충분한 점막 주름은 탄력과 여성질환 예방에 중요합니다.",
       },
       {
         name: "웨딩레이저 질성형",
@@ -122,8 +122,8 @@ export const categories: Category[] = [
       {
         name: "고주파 질탄력술 (코아썸)",
         en: "RF Tightening · CoA Therm",
-        desc: "고주파 심부열로 혈액순환과 콜라겐 생성을 자극합니다. 무통·무상처, 회복기간이 없는 것이 특징입니다.",
-        points: ["무통 · 회복기간 없음"],
+        desc: "고주파 심부열로 혈액순환과 콜라겐 생성을 자극합니다. 통증·상처 부담이 적어 회복 기간이 거의 필요 없는 것이 특징입니다.",
+        points: ["무통 지향 · 빠른 일상 복귀"],
       },
       {
         name: "금실타이트닝",
@@ -264,7 +264,7 @@ export const categories: Category[] = [
         name: "하이푸 클리닉",
         en: "HIFU Clinic",
         desc: "하이푸 치료의 원리와 적응증을 확인하고, 정밀 검사로 치료 가능 여부를 판단합니다.",
-        points: ["무절개 · 무출혈", "비마취 시술"],
+        points: ["무절개 시술", "출혈 부담 최소화"],
       },
       {
         name: "자궁근종 하이푸",
@@ -294,8 +294,8 @@ export const categories: Category[] = [
     treatments: [
       {
         name: "성감드레스주사",
-        desc: "8가지 약물을 복합한 주사로 질 탄력·보습을 개선하고 성교통 완화를 돕는 비수술 시술 — 20분 이내, 시술 직후 일상 복귀.",
-        points: ["무출혈 · 무통증", "20분 이내"],
+        desc: "8가지 약물을 복합한 주사로 질 탄력·보습 개선과 성교통 완화를 돕는 비수술 시술 — 20분 이내, 시술 직후 일상 복귀를 지향합니다.",
+        points: ["출혈·통증 부담 최소화", "20분 이내"],
       },
       {
         name: "질 점막 촉촉주사",
@@ -353,7 +353,7 @@ export const careSystem = [
   {
     step: "03",
     title: "안전마취 시스템",
-    desc: "마취 전 평가부터 수술 중 모니터링까지 — 개원 이래 이어온 의료 무사고 기록의 바탕입니다.",
+    desc: "마취 전 평가부터 수술 중 모니터링까지 — 안전에서는 타협하지 않는 것이 포도의 원칙입니다.",
   },
   {
     step: "04",
@@ -385,6 +385,6 @@ export const privacyProgram = [
 export const consultChannels = [
   { label: "전화 상담", desc: "가장 빠른 방법 — 평일 저녁 7시까지", action: "tel" },
   { label: "카카오톡 상담", desc: "말하기 어려운 질문은 채팅으로 편하게", action: "kakao" },
-  { label: "온라인 전문의 상담", desc: "비공개 게시판에 원장이 직접 답변", action: "online" },
+  { label: "온라인 비공개 상담", desc: "가명으로 남기면 확인 후 조용히 연락드립니다", action: "online" },
   { label: "비용 상담", desc: "시술별 비용은 상태 확인 후 안내됩니다", action: "cost" },
 ];

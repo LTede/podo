@@ -9,6 +9,12 @@ export const metadata: Metadata = {
   title: "예약 · 오시는길 | 강남역 야간진료 — 포도여성의원",
   description:
     "강남역·신논현역 도보권, 평일 저녁 7시까지 야간진료. 비공개 상담 신청 — 가명 상담 가능, 02-3442-4454.",
+  openGraph: {
+    title: "예약 · 오시는길 | 강남역 야간진료 — 포도여성의원",
+    description:
+      "강남역·신논현역 도보권, 평일 저녁 7시까지 야간진료. 비공개 상담 신청 — 가명 상담 가능.",
+    type: "website",
+  },
 };
 
 export default function VisitPage() {

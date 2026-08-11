@@ -22,8 +22,8 @@ export default function Care() {
             <span className="text-glow-gradient">아무도 모르게</span>
           </h2>
           <p className="reveal mt-6 max-w-xl text-[15px] leading-relaxed text-mist/50">
-            안전을 모든 진료의 최우선 가치로 — 개원 이래 이어온 의료 무사고
-            기록 위에, 마음까지 살피는 감성케어를 더했습니다.
+            안전을 모든 진료의 최우선 가치로 — 개원 이래 지켜온 안전 원칙
+            위에, 마음까지 살피는 감성케어를 더했습니다.
           </p>
         </Reveal>
 

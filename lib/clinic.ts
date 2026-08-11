@@ -8,6 +8,9 @@ export const clinic = {
   addressShort: "강남역 · 신논현역 도보권",
   naverMapUrl: "https://map.naver.com/p/search/강남포도여성의원",
   youtube: "모형진 의학박사의 여성의학",
+  youtubeUrl: "https://www.youtube.com/@모형진의학박사의여성",
+  /** TODO(운영): 카카오 채널 개설 후 URL 입력 — 입력 시 상담 바·채널 카드가 자동으로 카톡 연결로 전환됨 */
+  kakaoUrl: "",
   hours: [
     { day: "월 – 금", time: "AM 10:00 – PM 7:00", note: "야간진료" },
     { day: "토요일", time: "AM 10:00 – PM 5:00", note: "" },

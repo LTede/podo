@@ -1,7 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { services } from "@/lib/clinic";
+import { clinic, services } from "@/lib/clinic";
 
 type Status = "idle" | "sending" | "done" | "error";
 
@@ -128,8 +128,11 @@ export default function ConsultForm() {
       {error && <p className="mt-3 text-[13px] text-rose">{error}</p>}
       {status === "error" && (
         <p className="mt-3 text-[13px] text-rose">
-          전송에 실패했습니다. 전화(02-3442-4454)로 문의해주시면 빠르게
-          도와드리겠습니다.
+          전송에 실패했습니다.{" "}
+          <a href={clinic.phoneHref} className="font-semibold underline">
+            {clinic.phone}
+          </a>
+          로 전화 주시면 빠르게 도와드리겠습니다.
         </p>
       )}
 

@@ -6,7 +6,14 @@ import { greeting, facilities, academics, honors, press } from "@/lib/about";
 import { milestones } from "@/lib/trust";
 
 export const metadata: Metadata = {
-  title: "포도 소개 | 포도여성의원",
+  title: "포도 소개 | 2003년부터 기준을 만든 여성의원 — 포도여성의원",
+  description:
+    "여성성형 교과서가 쓰인 곳. 2003년 개원, 무봉합 레이저 3D 소음순성형·골반인대접합술 개발 — 강남 포도여성의원의 이야기.",
+  openGraph: {
+    title: "포도 소개 | 2003년부터 기준을 만든 여성의원 — 포도여성의원",
+    description: "여성성형 교과서가 쓰인 곳. 2003년 개원, 무봉합 레이저 3D 소음순성형·골반인대접합술 개발 — 강남 포도여성의원의 이야기.",
+    type: "website",
+  },
 };
 
 export default function AboutPage() {

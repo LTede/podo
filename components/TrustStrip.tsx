@@ -53,7 +53,7 @@ export default function TrustStrip() {
       {trustStats.map((s, i) => (
         <div key={s.label} className="text-center">
           <p className="text-glow-gradient font-display text-3xl font-semibold tabular-nums md:text-4xl">
-            {values[i].toLocaleString()}
+            {s.comma ? values[i].toLocaleString() : String(values[i])}
             <span className="text-xl md:text-2xl">{s.suffix}</span>
           </p>
           <p className="mt-2 text-[11px] tracking-wide text-mist/45 md:text-[12px]">

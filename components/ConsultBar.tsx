@@ -43,19 +43,33 @@ export default function ConsultBar() {
             <span className="text-base" aria-hidden>📞</span>
             <span className="text-[11px] font-semibold">전화 상담</span>
           </a>
-          <a
-            href={clinic.phoneHref}
-            className="flex flex-col items-center gap-0.5 border-x border-mist/10 py-3 text-mist"
-          >
-            <span className="text-base" aria-hidden>💬</span>
-            <span className="text-[11px] font-semibold">카톡 상담</span>
-          </a>
+          {clinic.kakaoUrl ? (
+            <a
+              href={clinic.kakaoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-0.5 border-x border-mist/10 py-3 text-mist"
+            >
+              <span className="text-base" aria-hidden>💬</span>
+              <span className="text-[11px] font-semibold">카톡 상담</span>
+            </a>
+          ) : (
+            <a
+              href={clinic.naverMapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-0.5 border-x border-mist/10 py-3 text-mist"
+            >
+              <span className="text-base" aria-hidden>📍</span>
+              <span className="text-[11px] font-semibold">오시는 길</span>
+            </a>
+          )}
           <a
             href="/visit#consult"
             className="flex flex-col items-center gap-0.5 bg-gradient-to-r from-wine to-grape py-3 text-mist"
           >
             <span className="text-base" aria-hidden>🗓</span>
-            <span className="text-[11px] font-semibold">상담 신청</span>
+            <span className="text-[11px] font-semibold">비공개 상담</span>
           </a>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import { clinic } from "@/lib/clinic";
 
 const SITE_TITLE = "포도여성의원 | 강남역 여성성형 · 산부인과";
 const SITE_DESC =
@@ -31,20 +32,21 @@ export const metadata: Metadata = {
     siteName: "포도여성의원",
   },
   twitter: {
-    card: "summary_large_image",
+    // TODO(운영): OG 이미지 확보 후 summary_large_image로 전환 + images 필드 추가
+    card: "summary",
     title: SITE_TITLE,
     description: SITE_DESC,
   },
   robots: { index: true, follow: true },
 };
 
-/** 구조화 데이터 — 검색엔진에 병원·의료진 정보 제공 */
+/** 구조화 데이터 — lib/clinic.ts 단일 소스에서 생성 (이중 관리 방지) */
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "MedicalClinic",
-  name: "포도여성의원",
-  alternateName: "PODO Women's Clinic",
-  telephone: "+82-2-3442-4454",
+  name: clinic.nameKo,
+  alternateName: clinic.nameEn,
+  telephone: clinic.phone,
   address: {
     "@type": "PostalAddress",
     streetAddress: "강남대로 428 만이빌딩 2층",
@@ -69,8 +71,8 @@ const jsonLd = {
   medicalSpecialty: "Gynecologic",
   founder: {
     "@type": "Physician",
-    name: "모형진",
-    jobTitle: "대표원장 · 산부인과 전문의 · 의학박사",
+    name: clinic.doctor.name,
+    jobTitle: clinic.doctor.title,
   },
 };
 

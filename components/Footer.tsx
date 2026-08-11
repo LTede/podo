@@ -1,8 +1,9 @@
 import { clinic } from "@/lib/clinic";
 
 export default function Footer() {
+  // 모바일: 하단 고정 상담 바에 가리지 않도록 pb-32 여유 패딩
   return (
-    <footer className="border-t border-line py-14 text-mist/45">
+    <footer className="border-t border-line pb-32 pt-14 text-mist/45 md:pb-14">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <div className="flex flex-wrap items-baseline justify-between gap-6">
           <p className="font-display text-xl font-semibold text-mist">

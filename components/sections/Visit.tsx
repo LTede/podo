@@ -85,25 +85,34 @@ export default function Visit() {
           className="mt-16 grid gap-4 border-t border-mist/10 pt-12 md:grid-cols-4"
           stagger={0.07}
         >
-          {consultChannels.map((c) => (
-            <a
-              key={c.label}
-              href={c.action === "kakao" ? "#" : clinic.phoneHref}
-              className="glass reveal group rounded-2xl p-6 transition-colors hover:border-rose/40"
-            >
-              <p className="font-display text-lg font-semibold text-mist group-hover:text-rose">
-                {c.label}
-              </p>
-              <p className="mt-2 text-[13px] leading-relaxed text-mist/50">
-                {c.desc}
-              </p>
-              {c.action === "kakao" && (
-                <p className="mt-3 text-[10px] tracking-wide text-gold">
-                  채널 연결 준비 중 — 우선 전화로 문의해주세요
+          {consultChannels.map((c) => {
+            // 채널별 실제 목적지: 온라인 상담 → 비공개 폼, 카톡 → 채널 개설 전까지 전화, 그 외 → 전화
+            const href =
+              c.action === "online"
+                ? "#consult"
+                : c.action === "kakao" && clinic.kakaoUrl
+                  ? clinic.kakaoUrl
+                  : clinic.phoneHref;
+            return (
+              <a
+                key={c.label}
+                href={href}
+                className="glass reveal group rounded-2xl p-6 transition-colors hover:border-rose/40"
+              >
+                <p className="font-display text-lg font-semibold text-mist group-hover:text-rose">
+                  {c.label}
                 </p>
-              )}
-            </a>
-          ))}
+                <p className="mt-2 text-[13px] leading-relaxed text-mist/50">
+                  {c.desc}
+                </p>
+                {c.action === "kakao" && !clinic.kakaoUrl && (
+                  <p className="mt-3 text-[10px] tracking-wide text-gold">
+                    채널 연결 준비 중 — 지금은 전화로 연결됩니다
+                  </p>
+                )}
+              </a>
+            );
+          })}
         </Reveal>
       </div>
     </section>

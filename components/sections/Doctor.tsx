@@ -82,6 +82,15 @@ export default function Doctor() {
               레이저 3D 소음순성형 등 다수 술식을 직접 개발 — 수술의 처음과
               끝을 원장이 책임집니다.
             </p>
+            <a
+              href={clinic.youtubeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="reveal mt-6 inline-flex items-center gap-2.5 rounded-full border border-mist/15 px-5 py-2.5 text-[13px] font-medium text-mist/70 transition-colors hover:border-rose/40 hover:text-rose"
+            >
+              <span aria-hidden>▶</span> 유튜브 &lsquo;{clinic.youtube}&rsquo;
+              보러가기 ↗
+            </a>
           </Reveal>
         </div>
 

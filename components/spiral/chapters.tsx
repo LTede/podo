@@ -187,11 +187,14 @@ export function ChapterDoctor() {
         </p>
         <p className="text-[13px] text-mist/50">{doctor.title}</p>
       </div>
+      {/* 모바일은 3개, 데스크톱은 5개 — 카드 고정 높이 안에 들어오도록 */}
       <ul className="mt-4 space-y-2 border-t border-mist/10 pt-4">
-        {doctor.credentials.slice(0, 5).map((c) => (
+        {doctor.credentials.slice(0, 5).map((c, i) => (
           <li
             key={c}
-            className="flex items-baseline gap-3 text-[13px] leading-relaxed text-mist/70 md:text-sm"
+            className={`items-baseline gap-3 text-[13px] leading-relaxed text-mist/70 md:text-sm ${
+              i >= 3 ? "hidden md:flex" : "flex"
+            }`}
           >
             <span aria-hidden className="text-gold">◆</span>
             {c}
@@ -231,16 +234,17 @@ export function ChapterCare() {
         전 객실 VIP 1인실, 예약제 프라이버시 동선 — 접수부터 귀가까지 다른
         환자와 마주치지 않습니다.
       </p>
-      <div className="mt-6 grid gap-2.5 md:grid-cols-2">
+      {/* 모바일에서도 2열 유지 — 카드 고정 높이(88svh) 안에 들어오도록 */}
+      <div className="mt-6 grid grid-cols-2 gap-2.5">
         {careSystem.map((c) => (
           <div
             key={c.step}
-            className="rounded-2xl border border-mist/10 bg-white/[0.03] px-4 py-3"
+            className="rounded-2xl border border-mist/10 bg-white/[0.03] px-3.5 py-2.5"
           >
             <p className="text-[9px] font-semibold tracking-[0.25em] text-gold">
               STEP {c.step}
             </p>
-            <p className="font-display mt-1 text-[15px] font-semibold text-mist">
+            <p className="font-display mt-1 text-[13px] font-semibold text-mist md:text-[15px]">
               {c.title}
             </p>
           </div>
