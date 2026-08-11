@@ -62,43 +62,6 @@ function CenterRow({ s }: { s: (typeof services)[number] }) {
   );
 }
 
-export function ChapterHero() {
-  return (
-    <article className={shell}>
-      <Eyebrow>GANGNAM · PRIVATE WOMEN&apos;S CLINIC</Eyebrow>
-      <h1 className="font-display mt-5 text-4xl font-medium leading-[1.15] tracking-tight text-mist md:text-6xl">
-        가장 사적인
-        <br />
-        아름다움까지,
-        <br />
-        <span className="text-glow-gradient">당당하게.</span>
-      </h1>
-      <p className="mt-6 max-w-md text-sm leading-relaxed text-mist/55 md:text-base">
-        여성성형 교과서를 집필한 산부인과 전문의가 상담부터 회복까지 직접 —
-        포도여성의원은 <span className="font-semibold text-rose">당신의 자신감</span>을
-        설계합니다.
-      </p>
-      <div className="mt-8 flex flex-wrap items-center gap-3">
-        <a
-          href="#visit"
-          className="rounded-full bg-gradient-to-r from-wine to-grape px-7 py-3.5 text-sm font-semibold text-mist shadow-[0_0_32px_rgba(141,68,103,0.55)] transition-transform hover:-translate-y-0.5"
-        >
-          나를 위한 상담 예약
-        </a>
-        <a
-          href={clinic.phoneHref}
-          className="rounded-full border border-mist/15 px-7 py-3.5 text-sm font-medium text-mist/80 transition-colors hover:border-rose/40 hover:text-rose"
-        >
-          {clinic.phone}
-        </a>
-      </div>
-      <p className="mt-8 text-[10px] tracking-[0.25em] text-mist/30">
-        연세대 의대 · 여성성형 교과서 저자 · 수술 3만 례 · VIP 입원실 6실
-      </p>
-    </article>
-  );
-}
-
 export function ChapterPhilosophy() {
   return (
     <article className={shell}>

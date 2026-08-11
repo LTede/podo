@@ -2,8 +2,8 @@ import Header from "@/components/Header";
 import IntroOverlay from "@/components/IntroOverlay";
 import Nebula from "@/components/gl/Nebula";
 import SpiralStage from "@/components/spiral/SpiralStage";
+import LandingHero from "@/components/sections/LandingHero";
 import {
-  ChapterHero,
   ChapterPhilosophy,
   ChapterSignature,
   ChapterCenters,
@@ -23,8 +23,8 @@ export default function Home() {
       <IntroOverlay />
       <Header />
       <main className="pb-20 md:pb-0">
+        <LandingHero />
         <SpiralStage>
-          <ChapterHero />
           <ChapterPhilosophy />
           <ChapterSignature />
           <ChapterCenters />

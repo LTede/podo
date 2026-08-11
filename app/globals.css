@@ -103,6 +103,16 @@ body {
   }
 }
 
+/* 포도 문양 후광 회전 */
+@keyframes halo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* 떠다니는 카드 부유 */
 @keyframes float-slow {
   0%,

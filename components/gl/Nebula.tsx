@@ -160,12 +160,15 @@ function GlowOrbs() {
 }
 
 /** 포도줄기 척추 — 나선 덩굴 + 꼭대기 꽃관 + 흩날리는 꽃잎 + 바닥 빛웅덩이.
- *  나선 무대(SpiralStage)와 같은 위상(8챕터 × -45°)으로 회전한다. */
-function Vine({ chapters = 8 }: { chapters?: number }) {
+ *  나선 무대(SpiralStage, #spiral-track)와 같은 챕터 수·위상으로 회전하며,
+ *  랜딩 히어로 동안은 화면 아래 숨어 있다가 스크롤과 함께 자라 올라온다. */
+function Vine({ chapters = 7 }: { chapters?: number }) {
   const group = useRef<THREE.Group>(null);
   const crown = useRef<THREE.Group>(null);
   const petalsRef = useRef<THREE.Points>(null);
   const rippleRefs = useRef<(THREE.Mesh | null)[]>([]);
+  const trackEl = useRef<HTMLElement | null>(null);
+  const STEP_RAD = (Math.PI * 2) / chapters;
   const SPAN = 1.15; // 챕터당 세로 간격 (월드 단위)
   const topY = ((chapters - 1) * SPAN) / 2;
 
@@ -277,15 +280,27 @@ function Vine({ chapters = 8 }: { chapters?: number }) {
 
   useFrame(({ clock }, delta) => {
     const t = clock.elapsedTime;
-    const doc = document.documentElement;
-    const total = doc.scrollHeight - window.innerHeight;
-    const p = total > 0 ? Math.min(1, window.scrollY / total) : 0;
+    // 나선 트랙(#spiral-track) 기준 진행도 — 히어로·테일 구간과 분리
+    if (!trackEl.current) {
+      trackEl.current = document.getElementById("spiral-track");
+    }
+    const vh = window.innerHeight;
+    let p = 0;
+    let heroP = 1; // 트랙 진입 전 0→1 (줄기가 자라 올라오는 정도)
+    if (trackEl.current) {
+      const top = trackEl.current.offsetTop;
+      const scrollable = Math.max(trackEl.current.offsetHeight - vh, 1);
+      p = Math.min(1, Math.max(0, (window.scrollY - top) / scrollable));
+      heroP = Math.min(1, Math.max(0, window.scrollY / Math.max(top, 1)));
+    }
     const f = p * (chapters - 1);
 
     if (group.current) {
-      // 나선 무대와 같은 위상(45°/챕터)으로 회전 + 현재 챕터 노드가 화면 중앙으로
-      group.current.rotation.y = (-f * Math.PI) / 4 + Math.sin(t * 0.2) * 0.05;
-      group.current.position.y = f * SPAN - topY;
+      // 나선 무대와 같은 위상으로 회전 + 현재 챕터 노드가 화면 중앙으로
+      group.current.rotation.y = -f * STEP_RAD + Math.sin(t * 0.2) * 0.05;
+      // 히어로 동안 화면 아래(-9)에 숨었다가 스크롤과 함께 자라 올라온다
+      const ease = heroP * heroP * (3 - 2 * heroP);
+      group.current.position.y = f * SPAN - topY + (1 - ease) * -9;
     }
     if (crown.current) {
       // 꽃관은 천천히 자전하며 숨을 쉰다

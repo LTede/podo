@@ -15,15 +15,14 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 /** 챕터당 스크롤 길이(vh) — 클수록 회전이 느긋해짐 */
 const CH_VH = 115;
-/** 챕터 간 링 회전각 — 8챕터 × 45° = 완전한 원형 (Nebula의 Vine 위상과 동기) */
-const STEP = 45;
 /** 챕터당 나선 하강량(px) */
 const DY = 100;
 /** 링 기울기 — 0이면 정면 카드가 완전한 수직 (기울기는 카드가 젖혀 보이는 부작용이 있어 미사용) */
 const TILT = 0;
 
+/* 히어로(#top)는 랜딩 섹션이 담당 — 나선은 7챕터 완전 원형(각 360/7°).
+   Nebula의 Vine도 같은 챕터 수·위상으로 동기 (components/gl/Nebula.tsx) */
 const IDS = [
-  "top",
   "philosophy",
   "services",
   "centers",
@@ -32,12 +31,14 @@ const IDS = [
   "about",
   "visit",
 ];
-const LABELS = ["포도", "철학", "진료", "센터", "의료진", "케어", "소개", "예약"];
+const LABELS = ["철학", "진료", "센터", "의료진", "케어", "소개", "예약"];
 
 /** 나선형 스크롤 무대 — 스크롤이 링을 돌려 다음 챕터가 눈앞으로 회전해 들어온다 */
 export default function SpiralStage({ children }: { children: ReactNode }) {
   const panels = Children.toArray(children);
   const n = panels.length;
+  /** 챕터 간 회전각 — n등분 완전 원형 */
+  const step = 360 / n;
 
   const wrap = useRef<HTMLDivElement>(null);
   const stage = useRef<HTMLDivElement>(null);
@@ -55,15 +56,15 @@ export default function SpiralStage({ children }: { children: ReactNode }) {
     );
     const measure = () => {
       const w = Math.min(window.innerWidth * 0.92, 780);
-      // 45° 스텝 기준 — 이웃 카드와 여백을 두어 원형 간격이 읽히도록
+      // 이웃 카드와 여백을 두어 원형 간격이 읽히도록
       setRadius(
-        Math.round(((w / 2) / Math.tan(((STEP / 2) * Math.PI) / 180)) * 1.12)
+        Math.round(((w / 2) / Math.tan(((step / 2) * Math.PI) / 180)) * 1.12)
       );
     };
     measure();
     window.addEventListener("resize", measure);
     return () => window.removeEventListener("resize", measure);
-  }, []);
+  }, [step]);
 
   useGSAP(
     () => {
@@ -73,7 +74,7 @@ export default function SpiralStage({ children }: { children: ReactNode }) {
         const f = progress * (n - 1);
         if (ring.current) {
           ring.current.style.transform = `translateZ(${-radius}px) rotateX(${TILT}deg) rotateY(${
-            -f * STEP
+            -f * step
           }deg) translateY(${-f * DY}px)`;
         }
         panelRefs.current.forEach((p, i) => {
@@ -139,6 +140,7 @@ export default function SpiralStage({ children }: { children: ReactNode }) {
   return (
     <div
       ref={wrap}
+      id="spiral-track"
       className="relative"
       // 트랙 길이: 마지막 챕터 앵커(=(n-1)*CH_VH)에서 정확히 정면이 되도록 +100vh
       style={{ height: `${(n - 1) * CH_VH + 100}vh` }}
@@ -191,7 +193,7 @@ export default function SpiralStage({ children }: { children: ReactNode }) {
                 height: "min(88svh, 680px)",
                 marginTop: "calc(min(88svh, 680px) / -2)",
                 backfaceVisibility: "hidden",
-                transform: `rotateY(${i * STEP}deg) translateZ(${radius}px) translateY(${i * DY}px)`,
+                transform: `rotateY(${i * step}deg) translateZ(${radius}px) translateY(${i * DY}px)`,
               }}
             >
               <div className="max-h-full w-full overflow-hidden rounded-[2rem]">
@@ -212,7 +214,10 @@ export default function SpiralStage({ children }: { children: ReactNode }) {
               aria-label={`${LABELS[i] ?? i + 1} 챕터로 이동`}
               onClick={() =>
                 window.scrollTo({
-                  top: (i * CH_VH * window.innerHeight) / 100,
+                  // 트랙은 랜딩 히어로 뒤에서 시작 — 트랙 기준 오프셋 보정
+                  top:
+                    (wrap.current?.offsetTop ?? 0) +
+                    (i * CH_VH * window.innerHeight) / 100,
                   behavior: "smooth",
                 })
               }
