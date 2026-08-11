@@ -15,7 +15,7 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
-      <Nebula />
+      <Nebula vine />
       <IntroOverlay />
       <Header />
       <main>

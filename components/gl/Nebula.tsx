@@ -144,8 +144,111 @@ function GlowOrbs() {
   );
 }
 
-/** 다크 배경 위 발광 네뷸라 — 페이지 전체 고정 배경 */
-export default function Nebula() {
+/** 포도줄기 척추 — 나선 덩굴 튜브 + 챕터 노드의 포도알 클러스터.
+ *  메인 나선 무대와 같은 위상(-f×60°)으로 회전해 공간의 중심축이 된다. */
+function Vine({ chapters = 6 }: { chapters?: number }) {
+  const group = useRef<THREE.Group>(null);
+  const SPAN = 1.3; // 챕터당 세로 간격 (월드 단위)
+  const topY = ((chapters - 1) * SPAN) / 2;
+  const sprite = useMemo(
+    () => makeGlowTexture("rgba(255,255,255,0.95)", "rgba(255,255,255,0.3)"),
+    []
+  );
+
+  const { tube, glow, grapes, grapeColors } = useMemo(() => {
+    // 살짝 굵기가 흔들리는 나선 곡선 = 덩굴
+    const pts: THREE.Vector3[] = [];
+    const turns = 1.7;
+    const seg = 140;
+    for (let s = 0; s <= seg; s++) {
+      const t = s / seg;
+      const y = topY - t * (chapters - 1) * SPAN;
+      const a = t * turns * Math.PI * 2;
+      const r = 0.42 + Math.sin(t * 12.7) * 0.05;
+      pts.push(new THREE.Vector3(Math.cos(a) * r, y, Math.sin(a) * r));
+    }
+    const curve = new THREE.CatmullRomCurve3(pts);
+    const tube = new THREE.TubeGeometry(curve, 220, 0.02, 8, false);
+    const glow = new THREE.TubeGeometry(curve, 220, 0.06, 8, false);
+
+    // 챕터 노드마다 포도알 송이
+    const palette = [
+      new THREE.Color("#d98ba6"),
+      new THREE.Color("#8d4467"),
+      new THREE.Color("#d4a763"),
+      new THREE.Color("#b57795"),
+    ];
+    const per = 14;
+    const positions = new Float32Array(chapters * per * 3);
+    const colors = new Float32Array(chapters * per * 3);
+    for (let i = 0; i < chapters; i++) {
+      const node = curve.getPoint(i / (chapters - 1));
+      for (let k = 0; k < per; k++) {
+        const idx = (i * per + k) * 3;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        const r = 0.06 + Math.random() * 0.13;
+        positions[idx] = node.x + r * Math.sin(phi) * Math.cos(theta);
+        positions[idx + 1] = node.y - 0.05 - Math.random() * 0.16; // 아래로 늘어지는 송이
+        positions[idx + 2] = node.z + r * Math.cos(phi);
+        const c = palette[Math.floor(Math.random() * palette.length)];
+        colors[idx] = c.r;
+        colors[idx + 1] = c.g;
+        colors[idx + 2] = c.b;
+      }
+    }
+    return { tube, glow, grapes: positions, grapeColors: colors };
+  }, [chapters, topY]);
+
+  useFrame(({ clock }) => {
+    if (!group.current) return;
+    const t = clock.elapsedTime;
+    const doc = document.documentElement;
+    const total = doc.scrollHeight - window.innerHeight;
+    const p = total > 0 ? Math.min(1, window.scrollY / total) : 0;
+    const f = p * (chapters - 1);
+    // 나선 무대와 같은 위상으로 회전 + 현재 챕터 노드가 화면 중앙 높이로
+    group.current.rotation.y = (-f * Math.PI) / 3 + Math.sin(t * 0.2) * 0.05;
+    group.current.position.y = f * SPAN - topY;
+  });
+
+  return (
+    <group ref={group}>
+      <mesh geometry={tube}>
+        <meshBasicMaterial color="#8d4467" transparent opacity={0.9} />
+      </mesh>
+      <mesh geometry={glow}>
+        <meshBasicMaterial
+          color="#d98ba6"
+          transparent
+          opacity={0.14}
+          blending={THREE.AdditiveBlending}
+          depthWrite={false}
+        />
+      </mesh>
+      <points>
+        <bufferGeometry>
+          <bufferAttribute attach="attributes-position" args={[grapes, 3]} />
+          <bufferAttribute attach="attributes-color" args={[grapeColors, 3]} />
+        </bufferGeometry>
+        <pointsMaterial
+          map={sprite}
+          vertexColors
+          transparent
+          opacity={0.95}
+          size={0.11}
+          sizeAttenuation
+          depthWrite={false}
+          blending={THREE.AdditiveBlending}
+        />
+      </points>
+    </group>
+  );
+}
+
+/** 다크 배경 위 발광 네뷸라 — 페이지 전체 고정 배경.
+ *  vine=true면 나선 무대의 중심축인 포도줄기 척추를 함께 그린다. */
+export default function Nebula({ vine = false }: { vine?: boolean }) {
   const [ready, setReady] = useState(false);
   const [count, setCount] = useState(850);
 
@@ -166,6 +269,7 @@ export default function Nebula() {
       >
         <GlowOrbs />
         <Dust count={count} />
+        {vine && <Vine />}
       </Canvas>
     </div>
   );

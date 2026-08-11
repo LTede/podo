@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { clinic } from "@/lib/clinic";
 
 const NAV = [
-  { href: "#philosophy", label: "철학" },
-  { href: "#services", label: "진료" },
-  { href: "#doctor", label: "의료진" },
-  { href: "#care", label: "케어" },
+  { href: "/philosophy", label: "철학" },
+  { href: "/services", label: "진료" },
+  { href: "/doctor", label: "의료진" },
+  { href: "/care", label: "케어" },
 ];
 
 export default function Header() {
@@ -36,7 +36,7 @@ export default function Header() {
         }`}
       >
         {/* 로고 */}
-        <a href="#top" className="flex items-center gap-2.5">
+        <a href="/" className="flex items-center gap-2.5">
           <span className="block h-2.5 w-2.5 rounded-full bg-gradient-to-br from-rose to-wine shadow-[0_0_12px_rgba(217,139,166,0.8)]" />
           <span className="font-display text-lg font-semibold tracking-tight text-mist md:text-xl">
             포도여성의원
@@ -69,7 +69,7 @@ export default function Header() {
           </nav>
 
           <a
-            href="#visit"
+            href="/visit"
             className="rounded-full bg-gradient-to-r from-wine to-grape px-5 py-2.5 text-[13px] font-semibold text-mist shadow-[0_0_24px_rgba(141,68,103,0.5)] transition-all hover:shadow-[0_0_32px_rgba(217,139,166,0.55)] md:px-6"
           >
             상담 예약
@@ -109,7 +109,7 @@ export default function Header() {
         }`}
       >
         <nav className="flex flex-1 flex-col justify-center gap-2 px-8 pt-16">
-          {[...NAV, { href: "#visit", label: "예약 · 오시는길" }].map(
+          {[...NAV, { href: "/visit", label: "예약 · 오시는길" }].map(
             (item, i) => (
               <a
                 key={item.href}

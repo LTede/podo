@@ -1,12 +1,32 @@
+import Link from "next/link";
 import { clinic, services } from "@/lib/clinic";
 
-/** 나선 무대 위 챕터 패널들 — 한 화면에 들어오는 압축 구성 */
+/** 나선 무대 위 챕터 패널들 — 포도줄기를 감아 도는, 각 페이지로 향하는 카드 */
 
 const shell =
   "rounded-[2rem] border border-mist/10 bg-[rgba(24,13,20,0.82)] p-7 shadow-[0_0_90px_rgba(109,39,67,0.28)] md:p-11";
 
 const eyebrow =
   "text-[10px] font-semibold tracking-[0.32em] text-gold md:text-[11px]";
+
+/** 카드 하단 — 해당 서브페이지로 들어가는 포털 링크 */
+function PageLink({ href, label }: { href: string; label: string }) {
+  return (
+    <Link
+      href={href}
+      className="group mt-7 inline-flex items-center gap-2.5 text-sm font-semibold text-gold-soft transition-colors hover:text-rose"
+    >
+      <span className="block h-1.5 w-1.5 rounded-full bg-gradient-to-br from-rose to-wine shadow-[0_0_8px_rgba(217,139,166,0.9)]" />
+      {label}
+      <span
+        aria-hidden
+        className="transition-transform duration-300 group-hover:translate-x-1.5"
+      >
+        →
+      </span>
+    </Link>
+  );
+}
 
 export function ChapterHero() {
   return (
@@ -72,6 +92,7 @@ export function ChapterPhilosophy() {
           </div>
         ))}
       </div>
+      <PageLink href="/philosophy" label="포도 철학 자세히" />
     </article>
   );
 }
@@ -103,11 +124,14 @@ export function ChapterServices() {
           </li>
         ))}
       </ul>
-      <p className="mt-6 text-right text-sm font-semibold text-gold-soft">
-        <a href="#visit" className="inline-flex items-center gap-2">
-          상담 예약하기 <span aria-hidden>→</span>
-        </a>
-      </p>
+      <div className="flex items-center justify-between">
+        <PageLink href="/services" label="진료 안내 자세히" />
+        <p className="mt-7 text-sm font-semibold text-mist/50">
+          <a href="#visit" className="transition-colors hover:text-rose">
+            상담 예약 →
+          </a>
+        </p>
+      </div>
     </article>
   );
 }
@@ -154,6 +178,7 @@ export function ChapterDoctor() {
           </div>
         ))}
       </div>
+      <PageLink href="/doctor" label="의료진 소개 자세히" />
     </article>
   );
 }
@@ -192,6 +217,7 @@ export function ChapterCare() {
           </div>
         ))}
       </div>
+      <PageLink href="/care" label="안전수술 · 감성케어 자세히" />
     </article>
   );
 }
@@ -241,6 +267,7 @@ export function ChapterVisit() {
           네이버 지도 ↗
         </a>
       </div>
+      <PageLink href="/visit" label="예약 · 오시는길 자세히" />
     </article>
   );
 }

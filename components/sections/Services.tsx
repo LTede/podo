@@ -31,7 +31,7 @@ export default function Services() {
           {/* 시그니처 카드 — 외음부성형 */}
           <Tilt className="reveal md:col-span-2" max={5}>
           <a
-            href="#visit"
+            href="/visit"
             className="group relative block h-full overflow-hidden rounded-3xl bg-gradient-to-br from-wine via-noir-3 to-grape p-8 shadow-[0_0_60px_rgba(141,68,103,0.35)] ring-1 ring-rose/20 md:p-12"
           >
             <div
@@ -69,7 +69,7 @@ export default function Services() {
           {rest.map((s) => (
             <Tilt key={s.key} className="reveal" max={9}>
             <a
-              href="#visit"
+              href="/visit"
               className="glass group block h-full rounded-3xl p-8 transition-colors duration-500 hover:border-rose/40"
             >
               <p className="text-[11px] font-semibold tracking-[0.28em] text-gold">
